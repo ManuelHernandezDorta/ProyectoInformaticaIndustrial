@@ -5,6 +5,7 @@ CONFIG -= qt
 
 SOURCES += \
         administrador.cpp \
+        aplicacion.cpp \
         artista.cpp \
         asistente.cpp \
         asistentevip.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     administrador.h \
+    aplicacion.h \
     artista.h \
     asistente.h \
     asistentevip.h \
