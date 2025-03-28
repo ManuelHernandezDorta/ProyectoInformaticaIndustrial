@@ -33,6 +33,13 @@ void Localizacion::displayLocalizacion(){
 
 }
 
-bool Localizacion::localizacionDisponible(string fecha){
-
+bool Localizacion::localizacionDisponible(int dia, int mes, int ano){
+    int fecha=ano*1000+mes*100+dia;
+    for(unsigned i=0; i<_listaEventos.size();i++){
+        if(fecha==_listaEventos[i]->getFecha()){
+            cout<<"La fecha está ocupada por el evento:" << _listaEventos[i]->getNombre()<<endl;
+            return false;
+         }
+    }
+    return true;
 }

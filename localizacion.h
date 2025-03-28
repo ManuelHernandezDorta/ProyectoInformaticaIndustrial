@@ -16,7 +16,7 @@ public:
     Localizacion(const Localizacion& Loc);
     ~Localizacion();
     void displayLocalizacion();
-    bool localizacionDisponible(string fecha);
+    bool localizacionDisponible(int dia, int mes, int ano);
 
 private:
     string _nombreLocalizacion;

@@ -10,15 +10,20 @@ class Evento
 {
 public:
     Evento();
-    Evento(string fecha, int precio, bool eventoVip, int entradasTotales,Localizacion* Loc);
+    Evento(string nombre, int dia, int mes,int ano, int precio, bool eventoVip, int entradasTotales,Localizacion* Loc);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
-    void setFecha(string fecha);
-    string getFecha();
+    void setFecha(int dia, int mes, int ano);
+    string getNombre();
+    int getFecha();
 
 private:
-    string _fecha;
+    string _nombre;
+    int _fecha;
+    int _dia;
+    int _mes;
+    int _ano;
     int _precio;
     bool _eventoVip;
     int _entradasDisponibles;
