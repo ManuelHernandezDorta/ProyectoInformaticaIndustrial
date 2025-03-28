@@ -6,11 +6,11 @@ Localizacion::Localizacion(){
     _nombreLocalizacion="";
     _direccion="";
     _aforo=0;
-    _listaEventos=NULL;
+    //_listaEventos=NULL;
 
 }
 
-Localizacion::Localizacion(string nombreLocalizacion, string direccion, int aforo, Evento* listaEventos){
+Localizacion::Localizacion(string nombreLocalizacion, string direccion, int aforo, vector<Evento*> listaEventos){
     _nombreLocalizacion=nombreLocalizacion;
     _direccion=direccion;
     _aforo=aforo;

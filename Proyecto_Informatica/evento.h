@@ -4,12 +4,13 @@
 #include <string>
 using namespace std;
 
+class Localizacion;
 
 class Evento
 {
 public:
     Evento();
-    Evento(string fecha, int precio, bool eventoVip, int entradasTotales, const Localizacion& Loc);
+    Evento(string fecha, int precio, bool eventoVip, int entradasTotales,Localizacion* Loc);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
@@ -22,7 +23,7 @@ private:
     bool _eventoVip;
     int _entradasDisponibles;
     int _entradasTotales;
-    Localizacion _Loc;
+    Localizacion* _Loc;
 };
 
 #endif // EVENTO_H

@@ -12,7 +12,7 @@ Evento::Evento(){
 
 }
 
-Evento::Evento(string fecha, int precio, bool eventoVip, int entradasTotales, const Localizacion& Loc){
+Evento::Evento(string fecha, int precio, bool eventoVip, int entradasTotales,Localizacion* Loc){
     _fecha=fecha;
     _precio=precio;
     _eventoVip=eventoVip;

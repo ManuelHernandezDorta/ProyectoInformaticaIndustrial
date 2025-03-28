@@ -11,8 +11,8 @@ SOURCES += \
         asistentevip.cpp \
         entrada.cpp \
         entradavip.cpp \
-        evento.cpp \
         localizacion.cpp \
+        evento.cpp \
         main.cpp \
         usuario.cpp
 
@@ -24,6 +24,6 @@ HEADERS += \
     asistentevip.h \
     entrada.h \
     entradavip.h \
-    evento.h \
     localizacion.h \
+    evento.h \
     usuario.h

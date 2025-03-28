@@ -2,14 +2,17 @@
 #define LOCALIZACION_H
 #include "evento.h"
 #include <string>
+#include <vector>
 
 using namespace std;
+
+class Evento;
 
 class Localizacion
 {
 public:
     Localizacion();
-    Localizacion(string nombreLocalizacion, string direccion, int aforo, Evento* listaEventos);
+    Localizacion(string nombreLocalizacion, string direccion, int aforo, vector<Evento*> listaEventos);
     Localizacion(const Localizacion& Loc);
     ~Localizacion();
     void displayLocalizacion();
@@ -19,7 +22,7 @@ private:
     string _nombreLocalizacion;
     string _direccion;
     int _aforo;
-    Evento* _listaEventos;
+    vector<Evento*> _listaEventos;
 
 };
 
