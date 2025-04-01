@@ -52,7 +52,7 @@ void Localizacion::agregarEvento(Evento* E){
     _listaEventos.push_back(E);
 }
 
-void Localizacion::eliminarEvento(Evento *E){
+void Localizacion::eliminarEvento(Evento* E){
     int auxtam=_listaEventos.size();
     for(int i=0;i<auxtam;i++){
         if (_listaEventos[i] == E) {
