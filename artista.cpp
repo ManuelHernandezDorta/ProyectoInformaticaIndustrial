@@ -75,6 +75,7 @@ void Artista::crearEvento(){
 
     Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, loc, this);
     _listaEventosArtista.push_back(miEvento);
+    loc->agregarEvento(miEvento);
 
     cout<<"Evento creado exitosamente"<<endl;
 }
@@ -88,6 +89,7 @@ void Artista::eliminarEvento(Evento& E) {
             delete _listaEventosArtista[i];
             _listaEventosArtista.erase(_listaEventosArtista.begin() + i);
             cout << "Evento eliminado correctamente." << endl;
+            E.getLocalizacion()->eliminarEvento(&E);
             return;
         }
     }

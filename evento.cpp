@@ -91,3 +91,15 @@ void Evento::setNombre(string nombreEvento){
 void Evento::setPrecio(int precio){
     _precio=precio;
 }
+
+Localizacion* Evento::getLocalizacion(){
+    return _Loc;
+}
+
+bool Evento::getEventoVip(){
+    return _eventoVip;
+}
+
+int Evento::getPrecio(){
+    return _precio;
+}

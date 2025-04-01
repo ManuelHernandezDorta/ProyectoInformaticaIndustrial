@@ -16,14 +16,17 @@ public:
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
-    string getNombre();
-    int getFecha();
-    Artista* getCreador();
     void setFecha(int dia, int mes, int ano);
     void setNombre(string nombreEvento);
     void setPrecio(int precio);
     void setEventoVip(bool eventoVip);
     void setLocalizacion(Localizacion* Loc);
+    Localizacion* getLocalizacion();
+    bool getEventoVip();
+    string getNombre();
+    int getFecha();
+    Artista* getCreador();
+    int getPrecio();
 
 private:
     string _nombreEvento;

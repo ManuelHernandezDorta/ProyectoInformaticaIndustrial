@@ -47,3 +47,19 @@ bool Localizacion::localizacionDisponible(int dia, int mes, int ano){
 int Localizacion::getAforo(){
     return _aforo;
 }
+
+void Localizacion::agregarEvento(Evento* E){
+    _listaEventos.push_back(E);
+}
+
+void Localizacion::eliminarEvento(Evento *E){
+    int auxtam=_listaEventos.size();
+    for(int i=0;i<auxtam;i++){
+        if (_listaEventos[i] == E) {
+            _listaEventos.erase(_listaEventos.begin() + i);
+            cout << "Evento eliminado correctamente de la localizacion: " <<_nombreLocalizacion<< endl;
+            }else{
+            cout<<"El evento no se encuentra en la lista"<<endl;
+        }
+    }
+}

@@ -18,6 +18,8 @@ public:
     void displayLocalizacion();
     bool localizacionDisponible(int dia, int mes, int ano);
     int getAforo();
+    void agregarEvento(Evento* E);
+    void eliminarEvento(Evento* E);
 
 private:
     string _nombreLocalizacion;
