@@ -1,22 +1,25 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 #include "localizacion.h"
+#include "artista.h"
 #include <string>
 using namespace std;
 
 class Localizacion;
+class Artista;
 
 class Evento
 {
 public:
     Evento();
-    Evento(string nombre, int dia, int mes,int ano, int precio, bool eventoVip, int entradasTotales,Localizacion* Loc);
+    Evento(string nombre, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
     void setFecha(int dia, int mes, int ano);
     string getNombre();
     int getFecha();
+    Artista* getCreador();
 
 private:
     string _nombre;
@@ -29,6 +32,7 @@ private:
     int _entradasDisponibles;
     int _entradasTotales;
     Localizacion* _Loc;
+    Artista* _creador;
 };
 
 #endif // EVENTO_H

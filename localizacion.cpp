@@ -43,3 +43,7 @@ bool Localizacion::localizacionDisponible(int dia, int mes, int ano){
     }
     return true;
 }
+
+int Localizacion::getAforo(){
+    return _aforo;
+}

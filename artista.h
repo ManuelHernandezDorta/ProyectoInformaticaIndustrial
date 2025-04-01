@@ -3,16 +3,19 @@
 #include "evento.h"
 #include "usuario.h"
 #include <string>
+#include <vector>
 
 
 using namespace std;
+
+class Evento;
 
 class Artista : public Usuario
 {
 public:
     Artista();
-    Artista(string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista);
-    Artista(const Artista& Art);
+    Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista);
+    Artista(string nombreUsuario, string contraseña, const Artista& Art);
     virtual ~Artista();
     void actualizarNombreArtista(const string& nombre);
     void actualizarEstiloArtista(const string& estiloMusical);
@@ -22,7 +25,7 @@ public:
     string getDescripcionArtista();
     void displayUsuario();
     void eliminarEvento(Evento& E);
-    void crearEvento(Evento& E);
+    void crearEvento();
     void editarEvento(Evento& E);
 
 

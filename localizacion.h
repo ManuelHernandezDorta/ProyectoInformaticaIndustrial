@@ -17,6 +17,7 @@ public:
     ~Localizacion();
     void displayLocalizacion();
     bool localizacionDisponible(int dia, int mes, int ano);
+    int getAforo();
 
 private:
     string _nombreLocalizacion;
