@@ -16,8 +16,8 @@ Evento::Evento(){
 
 }
 
-Evento::Evento(string nombre, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
-    _nombre=nombre;
+Evento::Evento(string nombreEvento, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
+    _nombreEvento=nombreEvento;
     _dia=dia;
     _mes=mes;
     _ano=ano;
@@ -32,7 +32,7 @@ Evento::Evento(string nombre, int dia, int mes, int ano, int precio, bool evento
 }
 
 Evento::Evento(const Evento& E){
-    _nombre=E._nombre;
+    _nombreEvento=E._nombreEvento;
     _dia=E._dia;
     _mes=E._mes;
     _ano=E._ano;
@@ -64,7 +64,7 @@ void Evento::setFecha(int dia, int mes, int ano){
 
 string Evento::getNombre(){
 
-    return _nombre;
+    return _nombreEvento;
 }
 
 int Evento::getFecha(){
@@ -74,4 +74,20 @@ int Evento::getFecha(){
 
 Artista* Evento::getCreador(){
     return _creador;
+}
+
+void Evento::setEventoVip(bool eventoVip){
+    _eventoVip=eventoVip;
+}
+
+void Evento::setLocalizacion(Localizacion* Loc){
+    _Loc=Loc;
+}
+
+void Evento::setNombre(string nombreEvento){
+    _nombreEvento=nombreEvento;
+}
+
+void Evento::setPrecio(int precio){
+    _precio=precio;
 }

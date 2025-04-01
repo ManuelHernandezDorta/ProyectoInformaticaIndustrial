@@ -12,17 +12,21 @@ class Evento
 {
 public:
     Evento();
-    Evento(string nombre, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
+    Evento(string nombreEvento, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
-    void setFecha(int dia, int mes, int ano);
     string getNombre();
     int getFecha();
     Artista* getCreador();
+    void setFecha(int dia, int mes, int ano);
+    void setNombre(string nombreEvento);
+    void setPrecio(int precio);
+    void setEventoVip(bool eventoVip);
+    void setLocalizacion(Localizacion* Loc);
 
 private:
-    string _nombre;
+    string _nombreEvento;
     int _fecha;
     int _dia;
     int _mes;

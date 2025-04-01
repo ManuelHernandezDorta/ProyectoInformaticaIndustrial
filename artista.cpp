@@ -78,3 +78,53 @@ void Artista::crearEvento(){
 
     cout<<"Evento creado exitosamente"<<endl;
 }
+
+void Artista::eliminarEvento(Evento& E) {
+    int tamano=_listaEventosArtista.size();
+    for (int i = 0; i < tamano; i++) {
+
+        if (_listaEventosArtista[i] == &E) {
+            cout << "Se procede a eliminar el evento: " << E.getNombre() << endl;
+            delete _listaEventosArtista[i];
+            _listaEventosArtista.erase(_listaEventosArtista.begin() + i);
+            cout << "Evento eliminado correctamente." << endl;
+            return;
+        }
+    }
+    cout << "El evento no se encuentra en la lista." << endl;
+}
+
+void Artista::editarEvento(Evento &E){
+    int auxtam=_listaEventosArtista.size();
+        for (int i = 0; i < auxtam; ++i) {
+            if (_listaEventosArtista[i] == &E) {
+                string nuevoNombre;
+                int nuevoDia, nuevoMes, nuevoAno, nuevoPrecio;
+                bool nuevoEventoVip;
+
+                cout << "Modificar evento: " << endl;
+                cout << "Ingrese el nuevo nombre del evento: "<<endl;
+                cin >> nuevoNombre;
+                    E.setNombre(nuevoNombre);
+
+                cout << "Ingrese el nuevo día del evento: "<<endl;
+                cin >> nuevoDia;
+                cout << "Ingrese el nuevo mes del evento: "<<endl;
+                cin >> nuevoMes;
+                cout << "Ingrese el nuevo año del evento: "<<endl;
+                cin >> nuevoAno;
+                    E.setFecha(nuevoDia, nuevoMes, nuevoAno);
+
+                cout << "Ingrese el nuevo precio del evento: ";
+                cin >> nuevoPrecio;
+                    E.setPrecio(nuevoPrecio);
+
+                cout << "¿Es el evento VIP? (1 para sí, 0 para no): ";
+                cin >> nuevoEventoVip;
+                    E.setEventoVip(nuevoEventoVip);
+                cout << "El evento ha sido editado correctamente." << endl;
+            }else{
+                cout << "No se encontró el evento para editar." << endl;
+            }
+        }
+}
