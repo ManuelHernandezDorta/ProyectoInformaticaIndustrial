@@ -11,7 +11,7 @@ public:
     Usuario();
     Usuario(string nombreUsuario, string contraseña);
     Usuario(const Usuario& U);
-    ~Usuario();
+    virtual ~Usuario();
 
     string getNombre();
     string getContraseña();

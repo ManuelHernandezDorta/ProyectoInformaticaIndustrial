@@ -12,6 +12,7 @@ public:
     Asistente();
     Asistente(string nombreUsuario, string contraseña, int dni, int cartera, vector<Entrada*> listaEntradas);
     Asistente(string nombreUsuario, string contraseña, const Asistente& Asst);
+    virtual ~Asistente();
     void setDni(const int& dni);
     void setCartera(const int& cartera);
     int getDni();

@@ -17,6 +17,8 @@ Asistente::Asistente(string nombreUsuario, string contraseña,const Asistente& A
     _listaEntradas=Asst._listaEntradas;
 }
 
+Asistente::~Asistente(){}
+
 void Asistente::setCartera(const int &cartera){
     _cartera=cartera;
 }

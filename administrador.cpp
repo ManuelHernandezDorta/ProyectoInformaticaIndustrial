@@ -16,6 +16,5 @@ Administrador::Administrador(const Administrador& A): Usuario(A){}
 Administrador::~Administrador(){}
 
 void Administrador::displayUsuario(){
-    cout << "Datos admin" << endl;
-    //cout << "Tipo: Administrador, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << endl;
+    cout << "Tipo: Administrador, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << endl;
 }
