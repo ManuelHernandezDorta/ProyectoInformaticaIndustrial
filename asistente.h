@@ -5,6 +5,9 @@
 #include "evento.h"
 #include <vector>
 
+class Evento;
+class Artista;
+
 
 class Asistente : public Usuario
 {

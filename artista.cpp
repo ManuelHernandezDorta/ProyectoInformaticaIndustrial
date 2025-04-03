@@ -55,17 +55,23 @@ void Artista::displayUsuario(){
     cout<<"El artista "<<_nombreArtista<<" con nombre de usuario "<<_nombreUsuario<< "y con estilo de música "<<_estiloMusical<<" posee la siguiente descripción "<<_descripcion;
 }
 
-void Artista::crearEvento(){
+void Artista::crearEvento(const Aplicacion& Apli){
     string nombreEvento;
-    int dia, mes, ano, precio;
+    int dia, mes, ano, precio, index, fecha;
     bool esVip;
-    Localizacion* loc=nullptr; //Tenemos que mirar como hacemos para que el artista seleccione una localizacion para el evento ¿Lista de Localizaciones?
+
+    Apli.displayLocalizaciones();
+    cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " <<endl;
+    cin>>index;
 
     cout << "Introduce el nombre del evento: ";
     cin >> nombreEvento;
 
     cout << "Introduce la fecha (día, mes, año): ";
     cin >> dia >> mes >> ano;
+    fecha=ano*1000+mes*100+dia;
+    this->coincideFecha(fecha, Apli.getLocalizacion(index));
+
 
     cout << "Introduce el precio del evento: ";
     cin >> precio;
@@ -73,11 +79,11 @@ void Artista::crearEvento(){
     cout << "¿Es un evento VIP? (1 = Sí, 0 = No): ";
     cin >> esVip;
 
-    Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, loc, this);
+    Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, Apli.getLocalizacion(index), this);
     _listaEventosArtista.push_back(miEvento);
-    loc->agregarEvento(miEvento);
+    Apli.getLocalizacion(index)->agregarEvento(miEvento);
 
-    cout<<"Evento creado exitosamente"<<endl;
+    cout<<"Evento creado"<<endl;
 }
 
 void Artista::eliminarEvento(Evento& E) {
@@ -96,12 +102,12 @@ void Artista::eliminarEvento(Evento& E) {
     cout << "El evento no se encuentra en la lista." << endl;
 }
 
-void Artista::editarEvento(Evento &E){
+void Artista::editarEvento(Evento &E, const Aplicacion& Apli){
     int auxtam=_listaEventosArtista.size();
         for (int i = 0; i < auxtam; ++i) {
             if (_listaEventosArtista[i] == &E) {
                 string nuevoNombre;
-                int nuevoDia, nuevoMes, nuevoAno, nuevoPrecio;
+                int nuevoDia, nuevoMes, nuevoAno, nuevoPrecio, index;
                 bool nuevoEventoVip;
 
                 cout << "Modificar evento: " << endl;
@@ -124,9 +130,33 @@ void Artista::editarEvento(Evento &E){
                 cout << "¿Es el evento VIP? (1 para sí, 0 para no): ";
                 cin >> nuevoEventoVip;
                     E.setEventoVip(nuevoEventoVip);
+
+                cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
+                Apli.displayLocalizaciones();
+                cin>>index;
+                E.setLocalizacion(Apli.getLocalizacion(index));
+
                 cout << "El evento ha sido editado correctamente." << endl;
             }else{
                 cout << "No se encontró el evento para editar." << endl;
             }
         }
+}
+
+void Artista::coincideFecha(int& fecha, Localizacion* Loc){
+    vector<Evento*> misEventos= Loc->getListaEventos();
+    bool fechaOcupada;
+    do {
+        fechaOcupada=false;
+        for (unsigned long i=0; i<misEventos.size();i++){
+            if(misEventos[i]->getFecha()==fecha){
+                cout<<"La fecha está ocupada por el evento: " << misEventos[i]->getNombre()<<endl;
+                cout<< "Introduce la nueva fecha con el formato ano/mes/dia, por ejemplo 20260904"<<endl;
+                cin>>fecha;
+                fechaOcupada=true;
+                break;
+            }
+     }
+    }while(fechaOcupada);
+
 }

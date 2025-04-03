@@ -2,13 +2,14 @@
 #define ARTISTA_H
 #include "evento.h"
 #include "usuario.h"
+#include "aplicacion.h"
 #include <string>
 #include <vector>
 
 
 using namespace std;
 
-class Evento;
+class Aplicacion;
 
 class Artista : public Usuario
 {
@@ -25,10 +26,9 @@ public:
     string getDescripcionArtista();
     void displayUsuario();
     void eliminarEvento(Evento& E);
-    void crearEvento();
-    void editarEvento(Evento& E);
-
-
+    void crearEvento(const Aplicacion& Apli);
+    void editarEvento(Evento& E, const Aplicacion& Apli);
+    void coincideFecha(int& fecha, Localizacion* Loc);
 
 private:
     string _estiloMusical;

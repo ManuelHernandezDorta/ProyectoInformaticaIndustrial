@@ -16,6 +16,21 @@ Evento::Evento(){
 
 }
 
+Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
+    _nombreEvento=nombreEvento;
+    _dia=fecha % 100;
+    _mes=(fecha % 1000)/100;
+    _ano= fecha/1000;
+    _fecha = fecha;
+    _precio=precio;
+    _eventoVip=eventoVip;
+    _entradasTotales=Loc->getAforo();
+    _entradasDisponibles=Loc->getAforo();
+    _Loc=Loc;
+    _creador=creador;
+
+}
+
 Evento::Evento(string nombreEvento, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
     _nombreEvento=nombreEvento;
     _dia=dia;
@@ -103,3 +118,4 @@ bool Evento::getEventoVip(){
 int Evento::getPrecio(){
     return _precio;
 }
+

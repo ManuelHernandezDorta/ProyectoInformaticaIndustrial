@@ -2,11 +2,17 @@
 #include <iostream>
 using namespace std;
 
-Localizacion::Localizacion(){
+Localizacion::Localizacion() : _listaEventos(){
     _nombreLocalizacion="";
     _direccion="";
     _aforo=0;
-    //_listaEventos=NULL;
+
+}
+
+Localizacion::Localizacion(string nombreLocalizacion, string direccion, int aforo) : _listaEventos(){
+    _nombreLocalizacion=nombreLocalizacion;
+    _direccion=direccion;
+    _aforo=aforo;
 
 }
 
@@ -42,6 +48,10 @@ bool Localizacion::localizacionDisponible(int dia, int mes, int ano){
          }
     }
     return true;
+}
+
+vector<Evento*> Localizacion::getListaEventos(){
+    return _listaEventos;
 }
 
 int Localizacion::getAforo(){

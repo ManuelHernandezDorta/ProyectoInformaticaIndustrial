@@ -13,6 +13,7 @@ class Evento
 public:
     Evento();
     Evento(string nombreEvento, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
+    Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();

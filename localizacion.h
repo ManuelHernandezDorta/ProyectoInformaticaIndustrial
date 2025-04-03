@@ -13,11 +13,13 @@ class Localizacion
 public:
     Localizacion();
     Localizacion(string nombreLocalizacion, string direccion, int aforo, vector<Evento*> listaEventos);
+    Localizacion(string nombreLocalizacion, string direccion, int aforo);
     Localizacion(const Localizacion& Loc);
     ~Localizacion();
     void displayLocalizacion();
     bool localizacionDisponible(int dia, int mes, int ano);
     int getAforo();
+    vector<Evento*> getListaEventos();
     void agregarEvento(Evento* E);
     void eliminarEvento(Evento* E);
 
