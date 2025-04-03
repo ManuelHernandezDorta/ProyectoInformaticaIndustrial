@@ -73,3 +73,20 @@ void Localizacion::eliminarEvento(Evento* E){
         }
     }
 }
+
+void Localizacion::coincideFecha(int& fecha){
+    bool fechaOcupada;
+    do {
+        fechaOcupada=false;
+        for (unsigned long i=0; i<_listaEventos.size();i++){
+            if(_listaEventos[i]->getFecha()==fecha){
+                cout<<"La fecha está ocupada por el evento: " << _listaEventos[i]->getNombre()<<endl;
+                cout<< "Introduce la nueva fecha con el formato ano/mes/dia, por ejemplo 20260904"<<endl;
+                cin>>fecha;
+                fechaOcupada=true;
+                break;
+            }
+     }
+    }while(fechaOcupada);
+
+}

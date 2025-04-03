@@ -28,7 +28,6 @@ public:
     void eliminarEvento(Evento& E);
     void crearEvento(const Aplicacion& Apli);
     void editarEvento(Evento& E, const Aplicacion& Apli);
-    void coincideFecha(int& fecha, Localizacion* Loc);
 
 private:
     string _estiloMusical;

@@ -70,7 +70,7 @@ void Artista::crearEvento(const Aplicacion& Apli){
     cout << "Introduce la fecha (día, mes, año): ";
     cin >> dia >> mes >> ano;
     fecha=ano*1000+mes*100+dia;
-    this->coincideFecha(fecha, Apli.getLocalizacion(index));
+    Apli.getLocalizacion(index)->coincideFecha(fecha);
 
 
     cout << "Introduce el precio del evento: ";
@@ -143,20 +143,3 @@ void Artista::editarEvento(Evento &E, const Aplicacion& Apli){
         }
 }
 
-void Artista::coincideFecha(int& fecha, Localizacion* Loc){
-    vector<Evento*> misEventos= Loc->getListaEventos();
-    bool fechaOcupada;
-    do {
-        fechaOcupada=false;
-        for (unsigned long i=0; i<misEventos.size();i++){
-            if(misEventos[i]->getFecha()==fecha){
-                cout<<"La fecha está ocupada por el evento: " << misEventos[i]->getNombre()<<endl;
-                cout<< "Introduce la nueva fecha con el formato ano/mes/dia, por ejemplo 20260904"<<endl;
-                cin>>fecha;
-                fechaOcupada=true;
-                break;
-            }
-     }
-    }while(fechaOcupada);
-
-}

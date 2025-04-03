@@ -22,6 +22,7 @@ public:
     vector<Evento*> getListaEventos();
     void agregarEvento(Evento* E);
     void eliminarEvento(Evento* E);
+    void coincideFecha(int& fecha);
 
 private:
     string _nombreLocalizacion;
