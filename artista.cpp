@@ -22,8 +22,8 @@ Artista::Artista(string nombreUsuario, string contraseña, const Artista& Art) :
 }
 
 Artista::~Artista(){
-    for (Evento* evento : _listaEventosArtista) {
-        delete evento;
+    for (unsigned long i = 0; i < _listaEventosArtista.size(); i++){
+        delete _listaEventosArtista[i];
     }
 }
 
@@ -137,9 +137,9 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
                 E->setLocalizacion(Apli->getLocalizacion(index));
 
                 cout << "El evento ha sido editado correctamente." << endl;
-            }else{
-                cout << "No se encontró el evento para editar." << endl;
+                return;
             }
         }
+        cout << "No se encontró el evento para editar." << endl;
 }
 
