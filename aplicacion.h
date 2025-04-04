@@ -19,13 +19,10 @@ class Aplicacion{
 public:
     Aplicacion();
     ~Aplicacion();
-    void crearArtista();
-    void crearAsistente();
-    void crearAdministrador();
     void displayUsuarios();
     void displayEventos();
-    void displayLocalizaciones() const;
-    Localizacion* getLocalizacion(int index) const;
+    void displayLocalizaciones();
+    Localizacion* getLocalizacion(int index);
 
 private:
     vector<Usuario*> _listaUsuarios;

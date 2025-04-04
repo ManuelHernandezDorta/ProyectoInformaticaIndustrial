@@ -11,6 +11,9 @@ public:
     Administrador(const Administrador& A);
     ~Administrador();
     void displayUsuario();
+    void crearArtista();
+    void crearAsistente();
+    void crearAdministrador();
 };
 
 #endif // ADMINISTRADOR_H

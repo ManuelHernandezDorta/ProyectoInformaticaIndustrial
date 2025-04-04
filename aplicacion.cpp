@@ -18,14 +18,14 @@ void Aplicacion::displayUsuarios(){
     }
 }
 
-void Aplicacion::displayLocalizaciones() const{
+void Aplicacion::displayLocalizaciones(){
         cout << "Número de localizaciones totales: " << _listaLocacizaciones.size() << endl;
         for (unsigned long i = 0; i< _listaLocacizaciones.size(); i++){
             _listaLocacizaciones[i]->displayLocalizacion();
         }
 }
 
-Localizacion* Aplicacion::getLocalizacion(int index) const{
+Localizacion* Aplicacion::getLocalizacion(int index){
     int aux=_listaLocacizaciones.size();
     while (index<0 || index>=aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y " << aux << " para que sea válido"<<endl;

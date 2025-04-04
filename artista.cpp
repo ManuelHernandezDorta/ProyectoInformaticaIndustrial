@@ -55,12 +55,12 @@ void Artista::displayUsuario(){
     cout<<"El artista "<<_nombreArtista<<" con nombre de usuario "<<_nombreUsuario<< "y con estilo de música "<<_estiloMusical<<" posee la siguiente descripción "<<_descripcion;
 }
 
-void Artista::crearEvento(const Aplicacion& Apli){
+void Artista::crearEvento(Aplicacion* Apli){
     string nombreEvento;
     int dia, mes, ano, precio, index, fecha;
     bool esVip;
 
-    Apli.displayLocalizaciones();
+    Apli->displayLocalizaciones();
     cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " <<endl;
     cin>>index;
 
@@ -70,7 +70,7 @@ void Artista::crearEvento(const Aplicacion& Apli){
     cout << "Introduce la fecha (día, mes, año): ";
     cin >> dia >> mes >> ano;
     fecha=ano*1000+mes*100+dia;
-    Apli.getLocalizacion(index)->coincideFecha(fecha);
+    Apli->getLocalizacion(index)->coincideFecha(fecha);
 
 
     cout << "Introduce el precio del evento: ";
@@ -79,9 +79,9 @@ void Artista::crearEvento(const Aplicacion& Apli){
     cout << "¿Es un evento VIP? (1 = Sí, 0 = No): ";
     cin >> esVip;
 
-    Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, Apli.getLocalizacion(index), this);
+    Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, Apli->getLocalizacion(index), this);
     _listaEventosArtista.push_back(miEvento);
-    Apli.getLocalizacion(index)->agregarEvento(miEvento);
+    Apli->getLocalizacion(index)->agregarEvento(miEvento);
 
     cout<<"Evento creado"<<endl;
 }
@@ -102,7 +102,7 @@ void Artista::eliminarEvento(Evento& E) {
     cout << "El evento no se encuentra en la lista." << endl;
 }
 
-void Artista::editarEvento(Evento &E, const Aplicacion& Apli){
+void Artista::editarEvento(Evento &E,Aplicacion* Apli){
     int auxtam=_listaEventosArtista.size();
         for (int i = 0; i < auxtam; ++i) {
             if (_listaEventosArtista[i] == &E) {
@@ -132,9 +132,9 @@ void Artista::editarEvento(Evento &E, const Aplicacion& Apli){
                     E.setEventoVip(nuevoEventoVip);
 
                 cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
-                Apli.displayLocalizaciones();
+                Apli->displayLocalizaciones();
                 cin>>index;
-                E.setLocalizacion(Apli.getLocalizacion(index));
+                E.setLocalizacion(Apli->getLocalizacion(index));
 
                 cout << "El evento ha sido editado correctamente." << endl;
             }else{
