@@ -33,21 +33,16 @@ Localizacion::Localizacion(const Localizacion& Loc){
 
 }
 
+Localizacion::~Localizacion(){
+    for (unsigned long i = 0; i < _listaEventos.size(); i++){
+        delete _listaEventos[i];
+    }
+}
+
 void Localizacion::displayLocalizacion(){
 
     cout<<"El nombre de la localizacion es "<< _nombreLocalizacion << " con dirección " << _direccion << "y un aforo máximo de: " << _aforo << "personas " << endl;
 
-}
-
-bool Localizacion::localizacionDisponible(int dia, int mes, int ano){
-    int fecha=ano*1000+mes*100+dia;
-    for(unsigned i=0; i<_listaEventos.size();i++){
-        if(fecha==_listaEventos[i]->getFecha()){
-            cout<<"La fecha está ocupada por el evento:" << _listaEventos[i]->getNombre()<<endl;
-            return false;
-         }
-    }
-    return true;
 }
 
 vector<Evento*> Localizacion::getListaEventos(){
@@ -63,8 +58,7 @@ void Localizacion::agregarEvento(Evento* E){
 }
 
 void Localizacion::eliminarEvento(Evento* E){
-    int auxtam=_listaEventos.size();
-    for(int i=0;i<auxtam;i++){
+    for(unsigned i=0;i<_listaEventos.size();i++){
         if (_listaEventos[i] == E) {
             _listaEventos.erase(_listaEventos.begin() + i);
             cout << "Evento eliminado correctamente de la localizacion: " <<_nombreLocalizacion<< endl;

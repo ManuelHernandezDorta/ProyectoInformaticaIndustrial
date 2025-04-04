@@ -17,7 +17,11 @@ Asistente::Asistente(string nombreUsuario, string contraseña,const Asistente& A
     _listaEntradas=Asst._listaEntradas;
 }
 
-Asistente::~Asistente(){}
+Asistente::~Asistente(){
+    for (unsigned long i = 0; i < _listaEntradas.size(); i++){
+        delete _listaEntradas[i];
+    }
+}
 
 void Asistente::setCartera(const int &cartera){
     _cartera=cartera;

@@ -60,7 +60,10 @@ Evento::Evento(const Evento& E){
 
 }
 
-Evento::~Evento(){}
+Evento::~Evento(){
+    delete _creador;
+    delete _Loc;
+}
 
 void Evento::displayEvento(){
 
