@@ -22,12 +22,18 @@ public:
     void displayUsuarios();
     void displayEventos();
     void displayLocalizaciones();
+    void anadirUsuario(Usuario* U);
+    void anadirEvento(Evento* E);
+    void anadirLocalizacion(Localizacion* Loc);
+    void eliminarUsuario(Usuario* U);
+    void eliminarEvento(Evento* E);
+    void eliminarLocalizacion(Localizacion* Loc);
     Localizacion* getLocalizacion(int index);
 
 private:
     vector<Usuario*> _listaUsuarios;
     vector<Evento*> _listaEventos;
-    vector<Localizacion*> _listaLocacizaciones;
+    vector<Localizacion*> _listaLocalizaciones;
 
 
 };

@@ -80,32 +80,32 @@ void Artista::crearEvento(Aplicacion* Apli){
     cin >> esVip;
 
     Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, Apli->getLocalizacion(index), this);
-    _listaEventosArtista.push_back(miEvento);
-    Apli->getLocalizacion(index)->agregarEvento(miEvento);
+    _listaEventosArtista.push_back(miEvento);                    //Añadimos el evento a la lista de eventos del artista
+    Apli->getLocalizacion(index)->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
+    Apli->anadirEvento(miEvento);                              //Añadimos el evento a la lista de eventos de la aplicacion
 
     cout<<"Evento creado"<<endl;
 }
 
-void Artista::eliminarEvento(Evento& E) {
-    int tamano=_listaEventosArtista.size();
-    for (int i = 0; i < tamano; i++) {
+void Artista::eliminarEvento(Evento* E, Aplicacion* Apli) {
+    for (unsigned i = 0; i < _listaEventosArtista.size(); i++) {
 
-        if (_listaEventosArtista[i] == &E) {
-            cout << "Se procede a eliminar el evento: " << E.getNombre() << endl;
-            delete _listaEventosArtista[i];
-            _listaEventosArtista.erase(_listaEventosArtista.begin() + i);
+        if (_listaEventosArtista[i] == E) {
+            cout << "Se procede a eliminar el evento: " << E->getNombre() << endl;
+            delete _listaEventosArtista[i];                                          //liberamos memoria dinámica
+            _listaEventosArtista.erase(_listaEventosArtista.begin() + i);            //eliminamos el evento del vector del artista
+            Apli->eliminarEvento(E);                                                 //eliminamos el evento del vector de la aplicación
+            E->getLocalizacion()->eliminarEvento(E);                                 //eliminamos el evento asignado a su localización
             cout << "Evento eliminado correctamente." << endl;
-            E.getLocalizacion()->eliminarEvento(&E);
             return;
         }
     }
     cout << "El evento no se encuentra en la lista." << endl;
 }
 
-void Artista::editarEvento(Evento &E,Aplicacion* Apli){
-    int auxtam=_listaEventosArtista.size();
-        for (int i = 0; i < auxtam; ++i) {
-            if (_listaEventosArtista[i] == &E) {
+void Artista::editarEvento(Evento* E,Aplicacion* Apli){
+        for (unsigned i = 0; i < _listaEventosArtista.size(); ++i) {
+            if (_listaEventosArtista[i] == E) {
                 string nuevoNombre;
                 int nuevoDia, nuevoMes, nuevoAno, nuevoPrecio, index;
                 bool nuevoEventoVip;
@@ -113,7 +113,7 @@ void Artista::editarEvento(Evento &E,Aplicacion* Apli){
                 cout << "Modificar evento: " << endl;
                 cout << "Ingrese el nuevo nombre del evento: "<<endl;
                 cin >> nuevoNombre;
-                    E.setNombre(nuevoNombre);
+                    E->setNombre(nuevoNombre);
 
                 cout << "Ingrese el nuevo día del evento: "<<endl;
                 cin >> nuevoDia;
@@ -121,20 +121,20 @@ void Artista::editarEvento(Evento &E,Aplicacion* Apli){
                 cin >> nuevoMes;
                 cout << "Ingrese el nuevo año del evento: "<<endl;
                 cin >> nuevoAno;
-                    E.setFecha(nuevoDia, nuevoMes, nuevoAno);
+                    E->setFecha(nuevoDia, nuevoMes, nuevoAno);
 
                 cout << "Ingrese el nuevo precio del evento: ";
                 cin >> nuevoPrecio;
-                    E.setPrecio(nuevoPrecio);
+                    E->setPrecio(nuevoPrecio);
 
                 cout << "¿Es el evento VIP? (1 para sí, 0 para no): ";
                 cin >> nuevoEventoVip;
-                    E.setEventoVip(nuevoEventoVip);
+                    E->setEventoVip(nuevoEventoVip);
 
                 cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
                 Apli->displayLocalizaciones();
                 cin>>index;
-                E.setLocalizacion(Apli->getLocalizacion(index));
+                E->setLocalizacion(Apli->getLocalizacion(index));
 
                 cout << "El evento ha sido editado correctamente." << endl;
             }else{

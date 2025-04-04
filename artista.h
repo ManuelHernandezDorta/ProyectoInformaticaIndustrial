@@ -25,9 +25,9 @@ public:
     string getEstiloArtista();
     string getDescripcionArtista();
     void displayUsuario();
-    void eliminarEvento(Evento& E);
+    void eliminarEvento(Evento* E, Aplicacion* Apli);
     void crearEvento(Aplicacion* Apli);
-    void editarEvento(Evento& E,Aplicacion* Apli);
+    void editarEvento(Evento* E,Aplicacion* Apli);
 
 private:
     string _estiloMusical;
