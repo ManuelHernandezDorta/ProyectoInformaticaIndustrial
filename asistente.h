@@ -7,6 +7,7 @@
 
 class Evento;
 class Artista;
+class Entrada;
 
 
 class Asistente : public Usuario

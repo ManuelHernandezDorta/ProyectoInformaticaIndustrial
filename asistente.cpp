@@ -18,7 +18,7 @@ Asistente::Asistente(string nombreUsuario, string contraseña,const Asistente& A
 }
 
 Asistente::~Asistente(){
-    for (unsigned long i = 0; i < _listaEntradas.size(); i++){
+    for (unsigned i = 0; i < _listaEntradas.size(); i++){
         delete _listaEntradas[i];
     }
 }
