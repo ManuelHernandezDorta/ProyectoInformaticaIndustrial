@@ -20,6 +20,7 @@ public:
     void setContraseña(string contraseña);
 
     virtual void displayUsuario() = 0;
+    virtual void menu() = 0;
 
 
 protected:

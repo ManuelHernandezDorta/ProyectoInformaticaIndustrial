@@ -1,7 +1,8 @@
 #include "aplicacion.h"
+#include <typeinfo>
 
 Aplicacion::Aplicacion(){
-    Administrador* root =  new Administrador ("root", "root");
+    Administrador* root =  new Administrador ("root", "root", this);
     _listaUsuarios.push_back(root);
 }
 
@@ -29,6 +30,13 @@ void Aplicacion::displayLocalizaciones(){
         for (unsigned long i = 0; i< _listaLocalizaciones.size(); i++){
             _listaLocalizaciones[i]->displayLocalizacion();
         }
+}
+
+void Aplicacion::displayEventos(){
+    cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
+    for (unsigned long i = 0; i< _listaEventos.size(); i++){
+        _listaEventos[i]->displayEvento();
+    }
 }
 
 void Aplicacion::anadirEvento(Evento* E){
@@ -60,7 +68,7 @@ void Aplicacion::eliminarLocalizacion(Localizacion* Loc){
         if (_listaLocalizaciones[i] == Loc) {
             delete _listaLocalizaciones[i];
             _listaLocalizaciones.erase(_listaLocalizaciones.begin() + i);
-            cout << "Evento eliminado correctamente de la lista de eventos globales"<< endl;
+            cout << "Localizacion eliminada correctamente de la lista de Localizaciones" << endl;
             return;
             }
     }
@@ -72,7 +80,7 @@ void Aplicacion::eliminarUsuario(Usuario* U){
         if (_listaUsuarios[i] == U) {
             delete _listaUsuarios[i];
             _listaUsuarios.erase(_listaUsuarios.begin() + i);
-            cout << "Evento eliminado correctamente de la lista de eventos globales"<< endl;
+            cout << "Usuario eliminado correctamente de la lista de Usuarios"<< endl;
             return;
             }
     }
@@ -80,11 +88,55 @@ void Aplicacion::eliminarUsuario(Usuario* U){
 }
 
 Localizacion* Aplicacion::getLocalizacion(int index){
-    int aux=_listaLocalizaciones.size();
-    while (index<0 || index>=aux){
-        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y " << aux << " para que sea válido"<<endl;
-        cin>>index;
+    int aux = _listaLocalizaciones.size();
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
     }
     return _listaLocalizaciones[index];
+}
+
+int Aplicacion::buscarUsuario(const string& nombreUsuario){
+    for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
+        if (_listaUsuarios[i]->getNombre() == nombreUsuario){
+            return i;
+        }
+    }
+    return (-1);
+}
+
+bool Aplicacion::comprobarContraseña(const string& nombreUsuario, const string& contraseña){
+    int indiceUsuario = buscarUsuario(nombreUsuario);
+
+    if (_listaUsuarios[indiceUsuario]->getContraseña() == contraseña){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+void Aplicacion::registrarse(){
+    string nombre, contraseña;
+    cout << "Introduce el nombre de usuario para registrarte: " << endl;
+    cin >>  nombre;
+
+    int indiceUsuario = buscarUsuario(nombre);
+
+    if (indiceUsuario < 0){
+        cout << "No existe ningun usuario con ese nombre, prueba de nuevo" << endl;
+        this->registrarse();
+    }
+    else{
+        cout << "Usuario encontrado" << endl << "Introduce la contraseña para el usuario (" << nombre << "): " << endl;
+        cin >> contraseña;
+
+        if (this->comprobarContraseña(nombre, contraseña)){
+            cout << "Contraseña correcta, te has registrado de forma correcta" << endl;
+            _listaUsuarios[indiceUsuario]->menu();
+        }
+
+    }
+
 }
 
