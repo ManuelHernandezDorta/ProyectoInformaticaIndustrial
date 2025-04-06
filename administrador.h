@@ -13,7 +13,7 @@ public:
     Administrador(string nombreUsuario, string contraseña);
     Administrador(string nombreUsuario, string contraseña, Aplicacion* App);
     Administrador(const Administrador& A);
-    ~Administrador();
+    virtual ~Administrador();
     void displayUsuario();
     void crearArtista();
     void crearAsistente();

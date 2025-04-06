@@ -3,6 +3,7 @@
 #include "usuario.h"
 #include "entrada.h"
 #include "evento.h"
+#include "aplicacion.h"
 #include <vector>
 
 class Evento;
@@ -14,21 +15,24 @@ class Asistente : public Usuario
 {
 public:
     Asistente();
-    Asistente(string nombreUsuario, string contraseña, int dni, int cartera, vector<Entrada*> listaEntradas);
+    Asistente(string nombreUsuario, string contraseña, string dni, int cartera);
+    Asistente(string nombreUsuario, string contraseña, string dni, int cartera, Aplicacion* App);
     Asistente(string nombreUsuario, string contraseña, const Asistente& Asst);
     virtual ~Asistente();
-    void setDni(const int& dni);
+    void setDni(const string& dni);
     void setCartera(const int& cartera);
-    int getDni();
+    string getDni();
     int getCartera();
     void comprarEntrada(Evento& E);
     void eventosDisponibles();
     void verArtista(Artista& Art);
     void displayUsuario();
+    void menu();
 protected:
     vector<Entrada*> _listaEntradas;
-    int _dni;
+    string _dni;
     int _cartera;
+    Aplicacion* _App;
 
 };
 

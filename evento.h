@@ -1,7 +1,7 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 #include "localizacion.h"
-#include "artista.h"
+#include "usuario.h"
 #include <string>
 using namespace std;
 
@@ -12,8 +12,8 @@ class Evento
 {
 public:
     Evento();
-    Evento(string nombreEvento, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
-    Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Artista* creador);
+    Evento(string nombreEvento, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador);
+    Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
@@ -26,8 +26,9 @@ public:
     bool getEventoVip();
     string getNombre();
     int getFecha();
-    Artista* getCreador();
+    Usuario* getCreador();
     int getPrecio();
+    bool comprobarVip();
 
 private:
     string _nombreEvento;
@@ -40,7 +41,7 @@ private:
     int _entradasDisponibles;
     int _entradasTotales;
     Localizacion* _Loc;
-    Artista* _creador;
+    Usuario* _creador;
 };
 
 #endif // EVENTO_H

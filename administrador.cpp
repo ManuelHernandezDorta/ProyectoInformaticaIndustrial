@@ -1,10 +1,14 @@
 #include "administrador.h"
 
-Administrador::Administrador(): Usuario(){}
+Administrador::Administrador(): Usuario(){
+    _App = nullptr;
+}
 
 
 
-Administrador::Administrador(string nombreUsuario, string contraseña): Usuario(nombreUsuario, contraseña){}
+Administrador::Administrador(string nombreUsuario, string contraseña): Usuario(nombreUsuario, contraseña){
+    _App = nullptr;
+}
 
 
 Administrador::Administrador(string nombreUsuario, string contraseña, Aplicacion* App): Usuario(nombreUsuario, contraseña){
@@ -12,7 +16,9 @@ Administrador::Administrador(string nombreUsuario, string contraseña, Aplicacio
 }
 
 
-Administrador::Administrador(const Administrador& A): Usuario(A){}
+Administrador::Administrador(const Administrador& A): Usuario(A){
+    _App = A._App;
+}
 
 
 
@@ -32,18 +38,17 @@ void Administrador::menu(){
 
     if (eleccion == 0){
         _App->displayUsuarios();
+    }
 
-        cout << "Desea realizar otra acion: (S/N): " << endl;
-        cin >> continuar;
+    cout << "Desea realizar otra acion: (S/N): " << endl;
+    cin >> continuar;
 
-        if (continuar == "S" || continuar == "s"){
-            this->menu();
-        }
-        else{
-            cout << "Cerrando sesion..." << endl;
-            return;
-        }
-
+    if (continuar == "S" || continuar == "s"){
+        this->menu();
+    }
+    else{
+        cout << "Cerrando sesion..." << endl;
+        return;
     }
 
 }

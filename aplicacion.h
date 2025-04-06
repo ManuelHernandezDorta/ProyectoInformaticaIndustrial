@@ -21,6 +21,7 @@ public:
     ~Aplicacion();
     void displayUsuarios();
     void displayEventos();
+    void displayEventosVip();
     void displayLocalizaciones();
     void anadirUsuario(Usuario* U);
     void anadirEvento(Evento* E);

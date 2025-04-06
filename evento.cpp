@@ -4,6 +4,7 @@
 using namespace std;
 
 Evento::Evento(){
+    _nombreEvento = "";
     _fecha=0;
     _dia=0;
     _mes=0;
@@ -16,7 +17,7 @@ Evento::Evento(){
 
 }
 
-Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
+Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador){
     _nombreEvento=nombreEvento;
     _dia=fecha % 100;
     _mes=(fecha % 1000)/100;
@@ -31,7 +32,7 @@ Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Locali
 
 }
 
-Evento::Evento(string nombreEvento, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Artista* creador){
+Evento::Evento(string nombreEvento, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador){
     _nombreEvento=nombreEvento;
     _dia=dia;
     _mes=mes;
@@ -67,7 +68,7 @@ Evento::~Evento(){
 
 void Evento::displayEvento(){
 
-    cout<<"El evento se celebra el dia "<< _dia << "/"<< _mes <<"/" << _ano << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << "a un precio de " << _precio << endl;
+    cout<<"El evento se celebra el dia "<< _dia << "/"<< _mes <<"/" << _ano << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
 
 }
 
@@ -90,7 +91,7 @@ int Evento::getFecha(){
     return _fecha;
 }
 
-Artista* Evento::getCreador(){
+Usuario* Evento::getCreador(){
     return _creador;
 }
 
@@ -120,5 +121,14 @@ bool Evento::getEventoVip(){
 
 int Evento::getPrecio(){
     return _precio;
+}
+
+bool Evento::comprobarVip(){
+    if (_eventoVip == true){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 

@@ -4,6 +4,7 @@ Artista::Artista() : Usuario(),_listaEventosArtista(){
     _nombreArtista="";
     _estiloMusical="";
     _descripcion="";
+    _App = nullptr;
 }
 
 Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista) : Usuario(nombreUsuario,contraseña){
@@ -11,7 +12,16 @@ Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, 
     _estiloMusical=estiloMusical;
     _descripcion=descripcion;
     _listaEventosArtista=listaEventosArtista;
+    _App = nullptr;
 
+}
+
+Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista, Aplicacion* App):Usuario(nombreUsuario, contraseña){
+    _nombreArtista=nombreArtista;
+    _estiloMusical=estiloMusical;
+    _descripcion=descripcion;
+    _listaEventosArtista=listaEventosArtista;
+    _App = App;
 }
 
 Artista::Artista(string nombreUsuario, string contraseña, const Artista& Art) : Usuario(nombreUsuario,contraseña){
@@ -19,7 +29,10 @@ Artista::Artista(string nombreUsuario, string contraseña, const Artista& Art) :
     _estiloMusical=Art._estiloMusical;
     _descripcion=Art._descripcion;
     _listaEventosArtista=Art._listaEventosArtista;
+    _App = Art._App;
 }
+
+
 
 Artista::~Artista(){
     for (unsigned long i = 0; i < _listaEventosArtista.size(); i++){
@@ -52,7 +65,7 @@ string Artista::getNombreArtista(){
 }
 
 void Artista::displayUsuario(){
-    cout<<"El artista "<<_nombreArtista<<" con nombre de usuario "<<_nombreUsuario<< "y con estilo de música "<<_estiloMusical<<" posee la siguiente descripción "<<_descripcion;
+    cout<<"El artista "<<_nombreArtista<<" con nombre de usuario "<<_nombreUsuario<< "y con estilo de música "<<_estiloMusical<<" posee la siguiente descripción "<<_descripcion << endl;
 }
 
 void Artista::crearEvento(Aplicacion* Apli){
@@ -141,5 +154,9 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
             }
         }
         cout << "No se encontró el evento para editar." << endl;
+}
+
+void Artista::menu(){
+
 }
 

@@ -2,19 +2,36 @@
 #include <typeinfo>
 
 Aplicacion::Aplicacion(){
+
     Administrador* root =  new Administrador ("root", "root", this);
+    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000, this);
+    Artista* artista1 = new Artista;
+
+    _listaUsuarios.push_back(asistente1);
     _listaUsuarios.push_back(root);
+    _listaUsuarios.push_back(artista1);
+
+    Localizacion* localizacion1 = new Localizacion;
+
+    _listaLocalizaciones.push_back(localizacion1);
+
+    Evento* evento1 = new Evento("Evento normal", 01012025, 100, false, _listaLocalizaciones[0], _listaUsuarios[2]);
+    Evento* evento2 = new Evento("Evento Vip", 02022025, 100, true, _listaLocalizaciones[0], _listaUsuarios[2]);
+
+    _listaEventos.push_back(evento1);
+    _listaEventos.push_back(evento2);
+
 }
 
 Aplicacion::~Aplicacion(){
-    for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
-        delete _listaUsuarios[i];
-    }
     for (unsigned long i = 0; i < _listaEventos.size(); i++){
         delete _listaEventos[i];
     }
     for (unsigned long i = 0; i < _listaLocalizaciones.size(); i++){
         delete _listaLocalizaciones[i];
+    }
+    for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
+        delete _listaUsuarios[i];
     }
 }
 
@@ -33,6 +50,15 @@ void Aplicacion::displayLocalizaciones(){
 }
 
 void Aplicacion::displayEventos(){
+    cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
+    for (unsigned long i = 0; i< _listaEventos.size(); i++){
+        if (!_listaEventos[i]->comprobarVip()){
+            _listaEventos[i]->displayEvento();
+        }
+    }
+}
+
+void Aplicacion::displayEventosVip(){
     cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
     for (unsigned long i = 0; i< _listaEventos.size(); i++){
         _listaEventos[i]->displayEvento();

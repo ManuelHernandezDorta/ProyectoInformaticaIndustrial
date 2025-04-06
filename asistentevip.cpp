@@ -1,6 +1,5 @@
 #include "asistentevip.h"
 
-AsistenteVip::AsistenteVip()
-{
+AsistenteVip::AsistenteVip(){
 
 }
