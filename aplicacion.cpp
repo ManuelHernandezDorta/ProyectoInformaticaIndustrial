@@ -128,14 +128,19 @@ void Aplicacion::registrarse(){
         this->registrarse();
     }
     else{
+        bool contraseñaCorrecta = false;
+
+        do{
         cout << "Usuario encontrado" << endl << "Introduce la contraseña para el usuario (" << nombre << "): " << endl;
         cin >> contraseña;
 
         if (this->comprobarContraseña(nombre, contraseña)){
             cout << "Contraseña correcta, te has registrado de forma correcta" << endl;
             _listaUsuarios[indiceUsuario]->menu();
+            contraseñaCorrecta = true;
         }
 
+        }while(!contraseñaCorrecta);
     }
 
 }

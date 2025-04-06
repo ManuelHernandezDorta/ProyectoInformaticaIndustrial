@@ -6,16 +6,28 @@ using namespace std;
 int main()
 {
     Aplicacion App;
-    string continuar;
 
-    cout << "Desea registrarse como usuario: (S/N) (Si no lo desea se cerrara el programa): " << endl;
-    cin >> continuar;
+    string desicion;
+    bool continuar = false;
 
-    if (continuar == "S" || continuar == "s"){
+    do{
+
         App.registrarse();
-    }
-    else{
-        cout << "Cerrando el programa..." << endl;
-        return 0;
-    }
+
+        cout << "Desea volver a registrarse como usuario: (S/N) (Si no lo desea se cerrara el programa): " << endl;
+        cin >> desicion;
+
+        if (desicion == "S" || desicion == "s"){
+            continuar =  true;
+        }
+
+        else{
+            cout << "Cerrando el programa..." << endl;
+            continuar =  false;
+        }
+
+    }while(continuar);
+
+
+    return 0;
 }
