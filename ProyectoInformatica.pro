@@ -8,9 +8,7 @@ SOURCES += \
         aplicacion.cpp \
         artista.cpp \
         asistente.cpp \
-        asistentevip.cpp \
         entrada.cpp \
-        entradavip.cpp \
         localizacion.cpp \
         evento.cpp \
         main.cpp \
@@ -21,9 +19,7 @@ HEADERS += \
     aplicacion.h \
     artista.h \
     asistente.h \
-    asistentevip.h \
     entrada.h \
-    entradavip.h \
     localizacion.h \
     evento.h \
     usuario.h

@@ -12,9 +12,9 @@ int main(){
 
     do{
 
-        App.registrarse();
+        App.menuPrincipal();
 
-        cout << "Desea volver a registrarse como usuario: (S/N) (Si no lo desea se cerrara el programa): " << endl;
+        cout << "Desea volver a abrir el menu principal: (S/N) (Si no lo desea se cerrara el programa): " << endl;
         cin >> desicion;
 
         if (desicion == "S" || desicion == "s"){

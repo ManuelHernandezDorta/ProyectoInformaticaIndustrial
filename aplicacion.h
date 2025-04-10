@@ -32,7 +32,9 @@ public:
     Localizacion* getLocalizacion(int index);
     int buscarUsuario(const string& nombreUsuario);
     bool comprobarContraseña(const string& nombreUsuario, const string& contraseña);
-    void registrarse();
+    void menuPrincipal();
+    void iniciarSesion();
+    void crearUsuario();
 
 private:
     vector<Usuario*> _listaUsuarios;

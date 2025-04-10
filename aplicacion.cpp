@@ -142,7 +142,32 @@ bool Aplicacion::comprobarContraseña(const string& nombreUsuario, const string&
     }
 }
 
-void Aplicacion::registrarse(){
+void Aplicacion::menuPrincipal(){
+
+    int eleccion;
+    cout << "Selecciona una opccion: " << endl << "0. Registrarse " << endl << "1. Iniciar Sesion " << endl;
+    cin >> eleccion;
+
+    switch (eleccion){
+
+        case 0:
+            this->crearUsuario();
+            break;
+
+        case 1:
+            this->iniciarSesion();
+            break;
+
+        default:
+            cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+            this->menuPrincipal();
+            break;
+
+    }
+}
+
+void Aplicacion::iniciarSesion(){
+
     string nombre, contraseña;
     cout << "Introduce el nombre de usuario para registrarte: " << endl;
     cin >>  nombre;
@@ -151,7 +176,7 @@ void Aplicacion::registrarse(){
 
     if (indiceUsuario < 0){
         cout << "No existe ningun usuario con ese nombre, prueba de nuevo" << endl;
-        this->registrarse();
+        this->iniciarSesion();
     }
     else{
         bool contraseñaCorrecta = false;
@@ -168,6 +193,31 @@ void Aplicacion::registrarse(){
 
         }while(!contraseñaCorrecta);
     }
+}
+
+void Aplicacion::crearUsuario(){
+
+    int eleccion;
+    cout << "Selecciona que tipo de ususario quieres crear: " << endl << "0. asistente " << endl << "1. artista " << endl;
+    cin >> eleccion;
+
+    switch (eleccion){
+
+        case 0:
+            this->crearUsuario();
+            break;
+
+        case 1:
+            this->iniciarSesion();
+            break;
+
+        default:
+            cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+            this->crearUsuario();
+            break;
+
+    }
+
 
 }
 
