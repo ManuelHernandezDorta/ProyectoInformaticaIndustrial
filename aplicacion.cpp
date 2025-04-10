@@ -4,7 +4,7 @@
 Aplicacion::Aplicacion(){
 
     Administrador* root =  new Administrador ("root", "root");
-    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000);
+    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000, false);
     Artista* artista1 = new Artista;
 
     _listaUsuarios.push_back(asistente1);
