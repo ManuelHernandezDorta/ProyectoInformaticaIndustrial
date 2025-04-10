@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class Aplicacion;
+
 class Usuario{
 
 public:
@@ -20,7 +22,7 @@ public:
     void setContraseña(string contraseña);
 
     virtual void displayUsuario() = 0;
-    virtual void menu() = 0;
+    virtual void menu(Aplicacion* App) = 0;
 
 
 protected:

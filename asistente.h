@@ -16,7 +16,6 @@ class Asistente : public Usuario
 public:
     Asistente();
     Asistente(string nombreUsuario, string contraseña, string dni, int cartera);
-    Asistente(string nombreUsuario, string contraseña, string dni, int cartera, Aplicacion* App);
     Asistente(string nombreUsuario, string contraseña, const Asistente& Asst);
     virtual ~Asistente();
     void setDni(const string& dni);
@@ -27,12 +26,11 @@ public:
     void eventosDisponibles();
     void verArtista(Artista& Art);
     void displayUsuario();
-    void menu();
+    void menu(Aplicacion* App);
 protected:
     vector<Entrada*> _listaEntradas;
     string _dni;
     int _cartera;
-    Aplicacion* _App;
 
 };
 

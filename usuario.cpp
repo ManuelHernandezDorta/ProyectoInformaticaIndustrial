@@ -1,4 +1,5 @@
 #include "usuario.h"
+#include "aplicacion.h"
 
 Usuario::Usuario(){
     _nombreUsuario = "";

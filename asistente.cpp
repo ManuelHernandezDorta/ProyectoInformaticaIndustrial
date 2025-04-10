@@ -3,20 +3,12 @@
 Asistente::Asistente() : Usuario(), _listaEntradas(){
     _dni="";
     _cartera=0;
-    _App = nullptr;
 }
 
 Asistente::Asistente(string nombreUsuario, string contraseña, string dni, int cartera) : Usuario(nombreUsuario,contraseña){
     _dni=dni;
-    _cartera=cartera;
-    _App = nullptr;
+    _cartera=cartera;;
 
-}
-
-Asistente::Asistente(string nombreUsuario, string contraseña, string dni, int cartera, Aplicacion* App): Usuario(nombreUsuario, contraseña){
-    _dni=dni;
-    _cartera=cartera;
-    _App = App;
 }
 
 
@@ -24,7 +16,6 @@ Asistente::Asistente(string nombreUsuario, string contraseña,const Asistente& A
     _dni=Asst._dni;
     _cartera=Asst._cartera;
     _listaEntradas=Asst._listaEntradas;
-    _App = Asst._App;
 }
 
 Asistente::~Asistente(){
@@ -53,7 +44,7 @@ void Asistente::displayUsuario(){
     cout << "Tipo: Asistente, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
 }
 
-void Asistente::menu(){
+void Asistente::menu(Aplicacion* App){
     int eleccion;
     string continuar;
 
@@ -62,14 +53,14 @@ void Asistente::menu(){
 
 
     if (eleccion == 0){
-        _App->displayEventos();
+        App->displayEventos();
     }
 
     cout << "Desea realizar otra acion: (S/N): " << endl;
     cin >> continuar;
 
     if (continuar == "S" || continuar == "s"){
-        this->menu();
+        this->menu(App);
     }
     else{
         cout << "Cerrando sesion..." << endl;

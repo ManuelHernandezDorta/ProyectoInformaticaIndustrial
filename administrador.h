@@ -11,17 +11,13 @@ class Administrador: public Usuario{
 public:
     Administrador();
     Administrador(string nombreUsuario, string contraseña);
-    Administrador(string nombreUsuario, string contraseña, Aplicacion* App);
     Administrador(const Administrador& A);
     virtual ~Administrador();
     void displayUsuario();
     void crearArtista();
     void crearAsistente();
     void crearAdministrador();
-    void menu();
-
-private:
-    Aplicacion* _App;
+    void menu(Aplicacion* App);
 };
 
 #endif // ADMINISTRADOR_H

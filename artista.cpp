@@ -4,7 +4,6 @@ Artista::Artista() : Usuario(),_listaEventosArtista(){
     _nombreArtista="";
     _estiloMusical="";
     _descripcion="";
-    _App = nullptr;
 }
 
 Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista) : Usuario(nombreUsuario,contraseña){
@@ -12,24 +11,15 @@ Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, 
     _estiloMusical=estiloMusical;
     _descripcion=descripcion;
     _listaEventosArtista=listaEventosArtista;
-    _App = nullptr;
 
 }
 
-Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista, Aplicacion* App):Usuario(nombreUsuario, contraseña){
-    _nombreArtista=nombreArtista;
-    _estiloMusical=estiloMusical;
-    _descripcion=descripcion;
-    _listaEventosArtista=listaEventosArtista;
-    _App = App;
-}
 
 Artista::Artista(string nombreUsuario, string contraseña, const Artista& Art) : Usuario(nombreUsuario,contraseña){
     _nombreArtista=Art._nombreArtista;
     _estiloMusical=Art._estiloMusical;
     _descripcion=Art._descripcion;
     _listaEventosArtista=Art._listaEventosArtista;
-    _App = Art._App;
 }
 
 
@@ -156,7 +146,7 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
         cout << "No se encontró el evento para editar." << endl;
 }
 
-void Artista::menu(){
+void Artista::menu(Aplicacion* App){
 
 }
 

@@ -20,8 +20,8 @@ Evento::Evento(){
 Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador){
     _nombreEvento=nombreEvento;
     _dia=fecha % 100;
-    _mes=(fecha % 1000)/100;
-    _ano= fecha/1000;
+    _mes=(fecha/100)%100;
+    _ano= fecha/10000;
     _fecha = fecha;
     _precio=precio;
     _eventoVip=eventoVip;
@@ -68,7 +68,7 @@ Evento::~Evento(){
 
 void Evento::displayEvento(){
 
-    cout<<"El evento se celebra el dia "<< _dia << "/"<< _mes <<"/" << _ano << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
+    cout<<"El evento se celebra el dia "<< _dia << "/" <<  _mes << "/" << _ano << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
 
 }
 
@@ -122,13 +122,3 @@ bool Evento::getEventoVip(){
 int Evento::getPrecio(){
     return _precio;
 }
-
-bool Evento::comprobarVip(){
-    if (_eventoVip == true){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-

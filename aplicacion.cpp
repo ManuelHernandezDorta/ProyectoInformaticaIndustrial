@@ -3,8 +3,8 @@
 
 Aplicacion::Aplicacion(){
 
-    Administrador* root =  new Administrador ("root", "root", this);
-    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000, this);
+    Administrador* root =  new Administrador ("root", "root");
+    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000);
     Artista* artista1 = new Artista;
 
     _listaUsuarios.push_back(asistente1);
@@ -15,8 +15,8 @@ Aplicacion::Aplicacion(){
 
     _listaLocalizaciones.push_back(localizacion1);
 
-    Evento* evento1 = new Evento("Evento normal", 01012025, 100, false, _listaLocalizaciones[0], _listaUsuarios[2]);
-    Evento* evento2 = new Evento("Evento Vip", 02022025, 100, true, _listaLocalizaciones[0], _listaUsuarios[2]);
+    Evento* evento1 = new Evento("Evento normal", 20251013, 100, false, _listaLocalizaciones[0], _listaUsuarios[2]);
+    Evento* evento2 = new Evento("Evento Vip", 20250202, 100, true, _listaLocalizaciones[0], _listaUsuarios[2]);
 
     _listaEventos.push_back(evento1);
     _listaEventos.push_back(evento2);
@@ -52,7 +52,7 @@ void Aplicacion::displayLocalizaciones(){
 void Aplicacion::displayEventos(){
     cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
     for (unsigned long i = 0; i< _listaEventos.size(); i++){
-        if (!_listaEventos[i]->comprobarVip()){
+        if (!_listaEventos[i]->getEventoVip()){
             _listaEventos[i]->displayEvento();
         }
     }
@@ -162,7 +162,7 @@ void Aplicacion::registrarse(){
 
         if (this->comprobarContraseña(nombre, contraseña)){
             cout << "Contraseña correcta, te has registrado de forma correcta" << endl;
-            _listaUsuarios[indiceUsuario]->menu();
+            _listaUsuarios[indiceUsuario]->menu(this);
             contraseñaCorrecta = true;
         }
 

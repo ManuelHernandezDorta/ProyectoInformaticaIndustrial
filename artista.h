@@ -16,7 +16,6 @@ class Artista : public Usuario
 public:
     Artista();
     Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista);
-    Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista, Aplicacion* App);
     Artista(string nombreUsuario, string contraseña, const Artista& Art);
     virtual ~Artista();
     void actualizarNombreArtista(const string& nombre);
@@ -29,14 +28,13 @@ public:
     void eliminarEvento(Evento* E, Aplicacion* Apli);
     void crearEvento(Aplicacion* Apli);
     void editarEvento(Evento* E,Aplicacion* Apli);
-    void menu();
+    void menu(Aplicacion* App);
 
 private:
     string _estiloMusical;
     string _descripcion;
     string _nombreArtista;
     vector<Evento*> _listaEventosArtista;
-    Aplicacion* _App;
 };
 
 #endif // ARTISTA_H
