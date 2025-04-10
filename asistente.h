@@ -15,22 +15,24 @@ class Asistente : public Usuario
 {
 public:
     Asistente();
-    Asistente(string nombreUsuario, string contraseña, string dni, int cartera);
+    Asistente(string nombreUsuario, string contraseña, string dni, int cartera, bool vip);
     Asistente(string nombreUsuario, string contraseña, const Asistente& Asst);
     virtual ~Asistente();
     void setDni(const string& dni);
     void setCartera(const int& cartera);
     string getDni();
     int getCartera();
+    bool getVip();
     void comprarEntrada(Evento& E);
     void eventosDisponibles();
     void verArtista(Artista& Art);
     void displayUsuario();
     void menu(Aplicacion* App);
-protected:
+private:
     vector<Entrada*> _listaEntradas;
     string _dni;
     int _cartera;
+    bool _vip;
 
 };
 

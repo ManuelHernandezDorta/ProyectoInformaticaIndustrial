@@ -10,14 +10,15 @@ class Entrada
 {
 public:
     Entrada();
-    Entrada(Asistente* asistenteAsignado, Evento* entradaEvento);
+    Entrada(Asistente* asistenteAsignado, Evento* entradaEvento, bool vip);
     ~Entrada();
     Evento* getEvento();
     Asistente* getAsistente();
 
-protected:
+private:
     Asistente* _asistenteAsignado;
     Evento* _entradaEvento;
+    bool _vip;
 };
 
 #endif // ENTRADA_H

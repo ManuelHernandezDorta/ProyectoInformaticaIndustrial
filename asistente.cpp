@@ -3,11 +3,13 @@
 Asistente::Asistente() : Usuario(), _listaEntradas(){
     _dni="";
     _cartera=0;
+    _vip=false;
 }
 
-Asistente::Asistente(string nombreUsuario, string contraseña, string dni, int cartera) : Usuario(nombreUsuario,contraseña){
+Asistente::Asistente(string nombreUsuario, string contraseña, string dni, int cartera, bool vip) : Usuario(nombreUsuario,contraseña){
     _dni=dni;
-    _cartera=cartera;;
+    _cartera=cartera;
+    _vip=vip;
 
 }
 
@@ -40,8 +42,18 @@ int Asistente::getCartera(){
     return _cartera;
 }
 
+bool Asistente::getVip(){
+    return _vip;
+}
+
 void Asistente::displayUsuario(){
-    cout << "Tipo: Asistente, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
+    string auxvip;
+    if(_vip){
+        auxvip="vip";
+    }else{
+        auxvip= "no vip";
+    }
+    cout << "Tipo: Asistente " << auxvip << ", con nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
 }
 
 void Asistente::menu(Aplicacion* App){
