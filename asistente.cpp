@@ -80,3 +80,14 @@ void Asistente::menu(Aplicacion* App){
     }
 
 }
+
+void Asistente::comprarEntrada(Aplicacion* Apli){
+    cout<<"Los asistentes tiene la opción de comprar entradas a eventos y los VIP tienen acceso a los eventos VIP y al mercado secundario"<<endl;
+    if (_vip){
+        Apli->displayEventos();
+        Apli->displayEventosVip();
+    }else{
+        Apli->displayEventos();
+    }
+
+}

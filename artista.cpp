@@ -6,11 +6,10 @@ Artista::Artista() : Usuario(),_listaEventosArtista(){
     _descripcion="";
 }
 
-Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista) : Usuario(nombreUsuario,contraseña){
+Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion) : Usuario(nombreUsuario,contraseña){
     _nombreArtista=nombreArtista;
     _estiloMusical=estiloMusical;
     _descripcion=descripcion;
-    _listaEventosArtista=listaEventosArtista;
 
 }
 
