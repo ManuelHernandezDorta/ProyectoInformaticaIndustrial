@@ -4,22 +4,7 @@
 Aplicacion::Aplicacion(){
 
     Administrador* root =  new Administrador ("root", "root");
-    Asistente* asistente1 = new Asistente ("asistente", "asistente", "DNI", 1000, false);
-    Artista* artista1 = new Artista;
-
-    _listaUsuarios.push_back(asistente1);
     _listaUsuarios.push_back(root);
-    _listaUsuarios.push_back(artista1);
-
-    Localizacion* localizacion1 = new Localizacion;
-
-    _listaLocalizaciones.push_back(localizacion1);
-
-    Evento* evento1 = new Evento("Evento normal", 20251013, 100, false, _listaLocalizaciones[0], _listaUsuarios[2]);
-    Evento* evento2 = new Evento("Evento Vip", 20250202, 100, true, _listaLocalizaciones[0], _listaUsuarios[2]);
-
-    _listaEventos.push_back(evento1);
-    _listaEventos.push_back(evento2);
 
 }
 
@@ -204,11 +189,11 @@ void Aplicacion::crearUsuario(){
     switch (eleccion){
 
         case 0:
-            this->crearUsuario();
+            this->crearAsistente();
             break;
 
         case 1:
-            this->iniciarSesion();
+            this->crearArtista();
             break;
 
         default:
@@ -217,7 +202,63 @@ void Aplicacion::crearUsuario(){
             break;
 
     }
+}
 
+void Aplicacion::crearAsistente(){
+    string nombre, contraseña, dni, eleccion;
+    int cartera;
+    bool vip;
+    cout << "Introduce los datos que se piden" << endl;
+
+    cout << "nombre: " << endl;
+    cin >> nombre;
+
+    cout << "contraseña: " << endl;
+    cin >> contraseña;
+
+    cout << "dni: " << endl;
+    cin >> dni;
+
+    cout << "fondos de la cuenta: " << endl;
+    cin >> cartera;
+
+    cout << "Es cuenta VIP (S/N): " << endl;
+    cin >> eleccion;
+
+    if (eleccion == "S" || eleccion == "s"){
+        vip = true;
+    }
+    else{
+        vip = false;
+    }
+
+     Asistente* asistente =  new Asistente (nombre, contraseña, dni,cartera, vip);
+     this->anadirUsuario(asistente);
+
+}
+
+void Aplicacion::crearArtista(){
+    string nombre, contraseña, estilo, descripccion, nombreArtista;
+
+    cout << "Introduce los datos que se piden" << endl;
+
+    cout << "nombre: " << endl;
+    cin >> nombre;
+
+    cout << "contraseña: " << endl;
+    cin >> contraseña;
+
+    cout << "nombre de artista: " << endl;
+    cin >> nombreArtista;
+
+    cout << "estilo de musica: " << endl;
+    cin >> estilo;
+
+    cout << "descripccion: " << endl;
+    cin >> descripccion;
+
+     Artista* artista =  new Artista (nombre, contraseña, nombreArtista, estilo, descripccion);
+     this->anadirUsuario(artista);
 
 }
 

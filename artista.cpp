@@ -6,7 +6,7 @@ Artista::Artista() : Usuario(),_listaEventosArtista(){
     _descripcion="";
 }
 
-Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion) : Usuario(nombreUsuario,contraseña){
+Artista::Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion): Usuario(nombreUsuario,contraseña){
     _nombreArtista=nombreArtista;
     _estiloMusical=estiloMusical;
     _descripcion=descripcion;
@@ -59,7 +59,7 @@ void Artista::displayUsuario(){
 
 void Artista::crearEvento(Aplicacion* Apli){
     string nombreEvento;
-    int fecha, precio, index;
+    int dia, mes, ano, precio, index, fecha;
     bool esVip;
 
     Apli->displayLocalizaciones();
@@ -70,7 +70,8 @@ void Artista::crearEvento(Aplicacion* Apli){
     cin >> nombreEvento;
 
     cout << "Introduce la fecha (día, mes, año): ";
-    cin >> fecha;
+    cin >> dia >> mes >> ano;
+    fecha=ano*1000+mes*100+dia;
     Apli->getLocalizacion(index)->coincideFecha(fecha);
 
 
@@ -80,7 +81,7 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "¿Es un evento VIP? (1 = Sí, 0 = No): ";
     cin >> esVip;
 
-    Evento* miEvento=new Evento(nombreEvento, fecha, precio, esVip, Apli->getLocalizacion(index), this);
+    Evento* miEvento=new Evento(nombreEvento, dia, mes, ano, precio, esVip, Apli->getLocalizacion(index), this);
     _listaEventosArtista.push_back(miEvento);                    //Añadimos el evento a la lista de eventos del artista
     Apli->getLocalizacion(index)->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
     Apli->anadirEvento(miEvento);                              //Añadimos el evento a la lista de eventos de la aplicacion
@@ -108,7 +109,7 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
         for (unsigned i = 0; i < _listaEventosArtista.size(); ++i) {
             if (_listaEventosArtista[i] == E) {
                 string nuevoNombre;
-                int nuevaFecha, nuevoPrecio, index;
+                int nuevoDia, nuevoMes, nuevoAno, nuevoPrecio, index;
                 bool nuevoEventoVip;
 
                 cout << "Modificar evento: " << endl;
@@ -116,9 +117,13 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
                 cin >> nuevoNombre;
                     E->setNombre(nuevoNombre);
 
-                cout << "Ingrese la fecha del evento (dia,mes,año): "<<endl;
-                cin >> nuevaFecha;
-                    E->setFecha(nuevaFecha);
+                cout << "Ingrese el nuevo día del evento: "<<endl;
+                cin >> nuevoDia;
+                cout << "Ingrese el nuevo mes del evento: "<<endl;
+                cin >> nuevoMes;
+                cout << "Ingrese el nuevo año del evento: "<<endl;
+                cin >> nuevoAno;
+                    E->setFecha(nuevoDia, nuevoMes, nuevoAno);
 
                 cout << "Ingrese el nuevo precio del evento: ";
                 cin >> nuevoPrecio;

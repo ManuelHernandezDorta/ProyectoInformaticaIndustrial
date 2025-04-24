@@ -15,7 +15,7 @@ class Artista : public Usuario
 {
 public:
     Artista();
-    Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion, vector<Evento*> listaEventosArtista);
+    Artista(string nombreUsuario, string contraseña,string nombreArtista, string estiloMusical, string descripcion);
     Artista(string nombreUsuario, string contraseña, const Artista& Art);
     virtual ~Artista();
     void actualizarNombreArtista(const string& nombre);

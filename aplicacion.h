@@ -5,7 +5,6 @@
 #include "administrador.h"
 #include "artista.h"
 #include "asistente.h"
-#include "asistentevip.h"
 #include "evento.h"
 #include "localizacion.h"
 
@@ -35,6 +34,8 @@ public:
     void menuPrincipal();
     void iniciarSesion();
     void crearUsuario();
+    void crearAsistente();
+    void crearArtista();
 
 private:
     vector<Usuario*> _listaUsuarios;
