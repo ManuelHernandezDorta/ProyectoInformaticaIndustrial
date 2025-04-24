@@ -12,12 +12,11 @@ class Evento
 {
 public:
     Evento();
-    Evento(string nombreEvento, int dia, int mes,int ano, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador);
     Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
-    void setFecha(int dia, int mes, int ano);
+    void setFecha(int fecha);
     void setNombre(string nombreEvento);
     void setPrecio(int precio);
     void setEventoVip(bool eventoVip);
@@ -33,9 +32,6 @@ public:
 private:
     string _nombreEvento;
     int _fecha;
-    int _dia;
-    int _mes;
-    int _ano;
     int _precio;
     bool _eventoVip;
     int _entradasDisponibles;

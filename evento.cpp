@@ -6,9 +6,6 @@ using namespace std;
 Evento::Evento(){
     _nombreEvento = "";
     _fecha=0;
-    _dia=0;
-    _mes=0;
-    _ano=0;
     _precio=0;
     _eventoVip=0;
     _entradasDisponibles=0;
@@ -19,9 +16,6 @@ Evento::Evento(){
 
 Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador){
     _nombreEvento=nombreEvento;
-    _dia=fecha % 100;
-    _mes=(fecha/100)%100;
-    _ano= fecha/10000;
     _fecha = fecha;
     _precio=precio;
     _eventoVip=eventoVip;
@@ -32,26 +26,9 @@ Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Locali
 
 }
 
-Evento::Evento(string nombreEvento, int dia, int mes, int ano, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador){
-    _nombreEvento=nombreEvento;
-    _dia=dia;
-    _mes=mes;
-    _ano=ano;
-    _fecha = _ano*1000+_mes*100+_dia;
-    _precio=precio;
-    _eventoVip=eventoVip;
-    _entradasTotales=Loc->getAforo();
-    _entradasDisponibles=Loc->getAforo();
-    _Loc=Loc;
-    _creador=creador;
-
-}
 
 Evento::Evento(const Evento& E){
     _nombreEvento=E._nombreEvento;
-    _dia=E._dia;
-    _mes=E._mes;
-    _ano=E._ano;
     _fecha=E._fecha;
     _precio=E._precio;
     _eventoVip=E._eventoVip;
@@ -74,16 +51,12 @@ void Evento::displayEvento(){
         auxvip="El evento no vip";
     }
 
-    cout<< auxvip <<" se celebra el dia "<< _dia << "/" <<  _mes << "/" << _ano << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
+    cout<< auxvip <<" se celebra en la fecha:" << _fecha << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
 
 }
 
-void Evento::setFecha(int dia, int mes, int ano){
-
-    _dia=dia;
-    _mes=mes;
-    _ano=ano;
-    _fecha = _ano*1000+_mes*100+_dia;
+void Evento::setFecha(int fecha){
+    _fecha=fecha;
 
 }
 
