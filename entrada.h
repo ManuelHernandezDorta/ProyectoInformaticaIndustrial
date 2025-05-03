@@ -10,7 +10,7 @@ class Entrada
 {
 public:
     Entrada();
-    Entrada(Asistente* asistenteAsignado, Evento* entradaEvento, bool vip);
+    Entrada(Asistente* asistenteAsignado, Evento* entradaEvento);
     ~Entrada();
     Evento* getEvento();
     Asistente* getAsistente();
@@ -18,7 +18,6 @@ public:
 private:
     Asistente* _asistenteAsignado;
     Evento* _entradaEvento;
-    bool _vip;
 };
 
 #endif // ENTRADA_H

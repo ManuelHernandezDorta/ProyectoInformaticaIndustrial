@@ -1,5 +1,9 @@
 #include "aplicacion.h"
 #include <typeinfo>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+
 
 Aplicacion::Aplicacion(){
 
@@ -40,13 +44,6 @@ void Aplicacion::displayEventos(){
         if (!_listaEventos[i]->getEventoVip()){
             _listaEventos[i]->displayEvento();
         }
-    }
-}
-
-void Aplicacion::displayEventosVip(){
-    cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
-    for (unsigned long i = 0; i< _listaEventos.size(); i++){
-        _listaEventos[i]->displayEvento();
     }
 }
 
@@ -105,6 +102,15 @@ Localizacion* Aplicacion::getLocalizacion(int index){
         cin >> index;
     }
     return _listaLocalizaciones[index];
+}
+
+Evento* Aplicacion::getEvento(int index){
+    int aux = _listaLocalizaciones.size();
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
+    }
+    return _listaEventos[index];
 }
 
 int Aplicacion::buscarUsuario(const string& nombreUsuario){
@@ -260,5 +266,19 @@ void Aplicacion::crearArtista(){
      Artista* artista =  new Artista (nombre, contraseña, nombreArtista, estilo, descripccion);
      this->anadirUsuario(artista);
 
+}
+
+int Aplicacion::getfechaActual(){
+    time_t tiempo_actual = std::time(nullptr);
+    tm* fecha_actual = std::localtime(&tiempo_actual);
+
+        ostringstream oss;
+        oss << fecha_actual->tm_mday
+            << fecha_actual->tm_mon + 1
+            << (fecha_actual->tm_year + 1900);
+
+        // Convertir la cadena a entero
+        int fecha_actual_entero = stoi(oss.str());
+        return fecha_actual_entero;
 }
 

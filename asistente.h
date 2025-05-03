@@ -23,7 +23,7 @@ public:
     string getDni();
     int getCartera();
     bool getVip();
-    void comprarEntrada(Evento& E);
+    void comprarEntrada(Aplicacion* Apli);
     void eventosDisponibles();
     void verArtista(Artista& Art);
     void displayUsuario();

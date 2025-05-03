@@ -82,12 +82,70 @@ void Asistente::menu(Aplicacion* App){
 }
 
 void Asistente::comprarEntrada(Aplicacion* Apli){
-    cout<<"Los asistentes tiene la opción de comprar entradas a eventos y los VIP tienen acceso a los eventos VIP y al mercado secundario"<<endl;
+    int index;
+
     if (_vip){
-        Apli->displayEventos();
-        Apli->displayEventosVip();
+        int eleccion;
+        cout << "Selecciona que tipo de compra quieres realizar: " << endl << "0. Canal oficial de venta  " << endl << "1. Mercado de segunda mano " << endl;
+        cin >> eleccion;
+
+        switch (eleccion){
+
+        case 0: {
+            cout<<"A continuación se muestra la lista de eventos:"<<endl;
+            Apli->displayEventos();
+            cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
+            cin>>index;
+            if(Apli->getfechaActual()<Apli->getEvento(index)->getFecha()){
+                cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
+                return;                                                 //o meter un bucle while para que siga introduciendo índices
+            }
+            if(_cartera<Apli->getEvento(index)->getPrecio()){
+                cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
+                return;
+            }else{
+                _cartera=_cartera-Apli->getEvento(index)->getPrecio();
+                cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
+            }
+            Entrada* miEntrada=new Entrada(this, Apli->getEvento(index));
+            _listaEntradas.push_back(miEntrada);
+                break;
+        }
+
+        case 1: {
+            cout<<"A continuación se muestra las entradas disponibles en el mercado secundario:"<<endl;
+                break;
+        }
+
+        default: {
+                cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+                break;
+        }
+        }
+
     }else{
+        cout<<"A continuación se muestra la lista de eventos:"<<endl;
         Apli->displayEventos();
+        cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
+        cin>>index;
+        if(Apli->getfechaActual()<Apli->getEvento(index)->getFecha()){
+            cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
+            return;                                                 //o meter un bucle while para que siga introduciendo índices
+        }
+        if(Apli->getfechaActual()+1>Apli->getEvento(index)->getFecha()){
+            cout<<"No es posible comprar entradas con más de un mes de antelación"<<endl;
+            return;                                                 //o meter un bucle while para que siga introduciendo índices
+        }
+        if(_cartera<Apli->getEvento(index)->getPrecio()){
+            cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
+            return;
+        }else{
+            _cartera=_cartera-Apli->getEvento(index)->getPrecio();
+            cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
+        }
+        Entrada* miEntrada=new Entrada(this, Apli->getEvento(index));
+        _listaEntradas.push_back(miEntrada);
+
     }
 
 }

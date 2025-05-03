@@ -3,13 +3,11 @@
 Entrada::Entrada(){
     _entradaEvento=nullptr;
     _asistenteAsignado=nullptr;
-    _vip=false;
 }
 
-Entrada::Entrada(Asistente* asistenteAsignado, Evento* entradaEvento, bool vip){
+Entrada::Entrada(Asistente* asistenteAsignado, Evento* entradaEvento){
     _asistenteAsignado=asistenteAsignado;
     _entradaEvento=entradaEvento;
-    _vip=vip;
 }
 
 Entrada::~Entrada(){
