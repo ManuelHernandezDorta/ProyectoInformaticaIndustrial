@@ -26,7 +26,7 @@ public:
     void comprarEntrada(Aplicacion* Apli);
     void mostrarEntradas();
     void eventosDisponibles();
-    void verArtista(Artista& Art);
+    void informaciónArtista(Aplicacion* Apli);
     void displayUsuario();
     void menu(Aplicacion* App);
     string tipoUsuario();

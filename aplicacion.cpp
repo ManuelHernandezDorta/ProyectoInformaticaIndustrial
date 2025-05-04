@@ -111,6 +111,15 @@ Evento* Aplicacion::getEvento(int index){
     return _listaEventos[index];
 }
 
+Usuario* Aplicacion::getUsuario(int index){
+    int aux = _listaUsuarios.size();
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de usuarios ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
+    }
+    return _listaUsuarios[index];
+}
+
 int Aplicacion::buscarUsuario(const string& nombreUsuario){
     for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
         if (_listaUsuarios[i]->getNombre() == nombreUsuario){

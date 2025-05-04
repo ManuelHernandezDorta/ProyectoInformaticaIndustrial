@@ -92,6 +92,7 @@ void Asistente::menu(Aplicacion* App){
         break;
     }
     case 4: {
+        this->informaciónArtista(App);
         break;
     }
     default: {
@@ -190,4 +191,18 @@ string Asistente::tipoUsuario(){
     string tipo;
     tipo="asistente";
     return tipo;
+}
+
+void Asistente::informaciónArtista(Aplicacion *Apli){
+    string nombre;
+    cout << "Introduce el nombre de un artista del que se quiera ver la información: " << endl;
+    cin >>  nombre;
+    int indiceUsuario = Apli->buscarUsuario(nombre);
+    if (indiceUsuario < 0){
+        cout << "No existe ningun usuario con ese nombre" << endl;
+        this->informaciónArtista(Apli);
+    }
+    if(Apli->getUsuario(indiceUsuario)->tipoUsuario()=="artista"){
+        Apli->getUsuario(indiceUsuario)->displayUsuario();
+    }
 }

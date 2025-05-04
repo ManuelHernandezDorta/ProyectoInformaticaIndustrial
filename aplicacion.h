@@ -29,6 +29,7 @@ public:
     void eliminarLocalizacion(Localizacion* Loc);
     Localizacion* getLocalizacion(int index);
     Evento* getEvento(int index);
+    Usuario* getUsuario(int index);
     int buscarUsuario(const string& nombreUsuario);
     bool comprobarContraseña(const string& nombreUsuario, const string& contraseña);
     void menuPrincipal();

@@ -54,7 +54,15 @@ string Artista::getNombreArtista(){
 }
 
 void Artista::displayUsuario(){
-    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << endl;
+    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << "con lista de eventos:" << endl;
+    this->displayListaEventos();
+}
+
+void Artista::displayListaEventos(){
+    cout << "Número de Eventos totales: " << _listaEventosArtista.size() << endl;
+    for (unsigned long i = 0; i< _listaEventosArtista.size(); i++){
+        _listaEventosArtista[i]->displayEvento();
+    }
 }
 
 void Artista::crearEvento(Aplicacion* Apli){
