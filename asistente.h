@@ -30,6 +30,8 @@ public:
     void displayUsuario();
     void menu(Aplicacion* App);
     string tipoUsuario();
+    Usuario* editar();
+
 private:
     vector<Entrada*> _listaEntradas;
     string _dni;

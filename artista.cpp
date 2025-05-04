@@ -157,3 +157,7 @@ string Artista::tipoUsuario(){
     tipo="artista";
     return tipo;
 }
+
+Usuario* Artista::editar(){
+
+}

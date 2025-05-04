@@ -209,3 +209,7 @@ void Asistente::informaciónArtista(Aplicacion *Apli){
         this->informaciónArtista(Apli);
     }
 }
+
+Usuario* Asistente::editar(){
+
+}

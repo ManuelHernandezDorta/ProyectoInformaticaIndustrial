@@ -31,6 +31,8 @@ public:
     void editarEvento(Evento* E,Aplicacion* Apli);
     void menu(Aplicacion* App);
     string tipoUsuario();
+    Usuario* editar();
+
 
 private:
     string _estiloMusical;
