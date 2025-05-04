@@ -41,9 +41,7 @@ void Aplicacion::displayLocalizaciones(){
 void Aplicacion::displayEventos(){
     cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
     for (unsigned long i = 0; i< _listaEventos.size(); i++){
-        if (!_listaEventos[i]->getEventoVip()){
-            _listaEventos[i]->displayEvento();
-        }
+        _listaEventos[i]->displayEvento();
     }
 }
 
@@ -210,6 +208,34 @@ void Aplicacion::crearUsuario(){
     }
 }
 
+void Aplicacion::crearUsuarioRoot(){
+
+    int eleccion;
+    cout << "Selecciona que tipo de ususario quieres crear: " << endl << "0. asistente " << endl << "1. artista " << endl << "2. administrador" << endl;
+    cin >> eleccion;
+
+    switch (eleccion){
+
+    case 0:
+        this->crearAsistente();
+        break;
+
+    case 1:
+        this->crearArtista();
+        break;
+
+    case 2:
+        this->crearAdministrador();
+        break;
+
+    default:
+        cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+        this->crearUsuario();
+        break;
+
+    }
+}
+
 void Aplicacion::crearAsistente(){
     string nombre, contraseña, dni, eleccion;
     int cartera;
@@ -268,6 +294,23 @@ void Aplicacion::crearArtista(){
 
 }
 
+
+void Aplicacion::crearAdministrador(){
+    string nombre, contraseña;
+
+    cout << "Introduce los datos que se piden" << endl;
+
+    cout << "nombre: " << endl;
+    cin >> nombre;
+
+    cout << "contraseña: " << endl;
+    cin >> contraseña;
+
+    Administrador* administrador =  new Administrador (nombre, contraseña);
+    this->anadirUsuario(administrador);
+
+}
+
 int Aplicacion::getfechaActual(){
 
     time_t tiempo_actual = time(nullptr);
@@ -304,4 +347,26 @@ bool Aplicacion::fechaAsistenteUnMes(int fecha){
     int fecha_ajustada = ano * 10000 + mes * 100 + dia;
     int fechaActual=this->getfechaActual();
     return fechaActual>fecha_ajustada;
+}
+
+void Aplicacion::borrarUsuario(){
+
+    string nombre;
+    cout << "Introduce el nombre de usuario que desea borrar: " << endl;
+    cin >>  nombre;
+
+    int indiceUsuario = buscarUsuario(nombre);
+
+    if (nombre == "root"){
+        cout << "No se puede eliminar el usuario root" << endl;
+        this->borrarUsuario();
+    }
+
+    if (indiceUsuario < 0){
+        cout << "No existe ningun usuario con ese nombre, prueba de nuevo" << endl;
+        this->borrarUsuario();
+    }
+    else{
+        _listaUsuarios.erase(_listaUsuarios.begin() + indiceUsuario);
+    }
 }

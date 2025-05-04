@@ -54,7 +54,7 @@ string Artista::getNombreArtista(){
 }
 
 void Artista::displayUsuario(){
-    cout<<"El artista "<<_nombreArtista<<" con nombre de usuario "<<_nombreUsuario<< "y con estilo de música "<<_estiloMusical<<" posee la siguiente descripción "<<_descripcion << endl;
+    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << endl;
 }
 
 void Artista::crearEvento(Aplicacion* Apli){

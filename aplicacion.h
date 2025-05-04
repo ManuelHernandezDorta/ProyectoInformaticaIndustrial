@@ -20,7 +20,6 @@ public:
     ~Aplicacion();
     void displayUsuarios();
     void displayEventos();
-    void displayEventosVip();
     void displayLocalizaciones();
     void anadirUsuario(Usuario* U);
     void anadirEvento(Evento* E);
@@ -35,11 +34,14 @@ public:
     void menuPrincipal();
     void iniciarSesion();
     void crearUsuario();
+    void crearUsuarioRoot();
     void crearAsistente();
     void crearArtista();
+    void crearAdministrador();
     int getfechaActual();
     bool fechaConcluida(int fecha);
     bool fechaAsistenteUnMes(int fecha);
+    void borrarUsuario();
 
 private:
     vector<Usuario*> _listaUsuarios;
