@@ -35,10 +35,7 @@ Evento::Evento(const Evento& E){
 
 }
 
-Evento::~Evento(){
-    delete _creador;
-    delete _Loc;
-}
+Evento::~Evento(){}
 
 void Evento::displayEvento(){
     string auxvip;
