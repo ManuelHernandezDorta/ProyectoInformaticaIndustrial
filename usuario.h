@@ -24,6 +24,7 @@ public:
     virtual void displayUsuario() = 0;
     virtual void menu(Aplicacion* App) = 0;
     virtual string tipoUsuario()=0;
+    virtual Usuario* editar() = 0;
 
 
 protected:

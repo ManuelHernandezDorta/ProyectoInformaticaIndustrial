@@ -43,6 +43,8 @@ public:
     bool fechaConcluida(int fecha);
     bool fechaAsistenteUnMes(int fecha);
     void borrarUsuario();
+    void editarUsuario();
+
 
 private:
     vector<Usuario*> _listaUsuarios;

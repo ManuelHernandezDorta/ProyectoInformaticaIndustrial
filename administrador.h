@@ -19,6 +19,7 @@ public:
     void crearAsistente();
     void crearAdministrador();
     void menu(Aplicacion* App);
+    Usuario* editar();
 };
 
 #endif // ADMINISTRADOR_H

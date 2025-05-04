@@ -320,6 +320,28 @@ void Aplicacion::crearAdministrador(){
 
 }
 
+void Aplicacion::editarUsuario(){
+
+    string nombre;
+    cout << "Introduce el nombre de usuario que desea editar: " << endl;
+    cin >>  nombre;
+
+    if (nombre == "root"){
+        cout << "El usuario root no se puede modificar" << endl;
+        this->editarUsuario();
+    }
+
+    int indiceUsuario = buscarUsuario(nombre);
+
+    Usuario* usuarioEditado = _listaUsuarios[indiceUsuario]->editar();
+
+    _listaUsuarios.erase(_listaUsuarios.begin() + indiceUsuario);
+    _listaUsuarios.insert(_listaUsuarios.begin() + indiceUsuario, usuarioEditado);
+
+
+
+}
+
 int Aplicacion::getfechaActual(){
 
     time_t tiempo_actual = time(nullptr);

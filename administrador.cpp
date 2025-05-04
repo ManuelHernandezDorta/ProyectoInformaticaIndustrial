@@ -40,8 +40,8 @@ void Administrador::menu(Aplicacion* App){
             break;
 
         case(2):
-            //App->editarUsuario();
-            //break;
+            App->editarUsuario();
+            break;
 
         case(3):
             App->borrarUsuario();
@@ -59,4 +59,42 @@ void Administrador::menu(Aplicacion* App){
         return;
     }
 
+}
+
+Usuario* Administrador::editar(){
+    int eleccion;
+    cout << "Que campo desea editar: " << endl << "0. nombre de usuario" << endl << "1. contraseña" << endl;
+    cin >> eleccion;
+
+    switch (eleccion) {
+
+    case 0:{
+        string nuevoNombre;
+        cout << "Introduce el nuevo nombre: " << endl;
+        cin >> nuevoNombre;
+
+        Usuario* nuevoAdmin = new Administrador(nuevoNombre, _contraseña);
+        return nuevoAdmin;
+
+        break;
+        }
+
+    case 1:{
+        string nuevaContraseña;
+        cout << "Introduce la nueva contraseña: " << endl;
+        cin >> nuevaContraseña;
+
+        Usuario* nuevoAdmin = new Administrador(_nombreUsuario, nuevaContraseña);
+        return nuevoAdmin;
+
+        break;
+        }
+
+    default:{
+        cout << "Esa no es una opcion valida, vuelve a intentarlo" << endl;
+        return this;
+        this->editar();
+        break;
+        }
+    }
 }
