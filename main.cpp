@@ -11,8 +11,6 @@ int main(){
     bool continuar = false;
 
     do{
-
-        cout<< App.getfechaActual()<<endl;
         App.menuPrincipal();
 
         cout << "Desea volver a abrir el menu principal: (S/N) (Si no lo desea se cerrara el programa): " << endl;
