@@ -14,6 +14,7 @@ public:
     Administrador(const Administrador& A);
     virtual ~Administrador();
     void displayUsuario();
+    string tipoUsuario();
     void crearArtista();
     void crearAsistente();
     void crearAdministrador();

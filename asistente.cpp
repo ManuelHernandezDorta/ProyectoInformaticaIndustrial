@@ -185,3 +185,9 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
     }
 
 }
+
+string Asistente::tipoUsuario(){
+    string tipo;
+    tipo="asistente";
+    return tipo;
+}

@@ -29,6 +29,7 @@ public:
     void verArtista(Artista& Art);
     void displayUsuario();
     void menu(Aplicacion* App);
+    string tipoUsuario();
 private:
     vector<Entrada*> _listaEntradas;
     string _dni;

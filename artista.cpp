@@ -144,3 +144,8 @@ void Artista::menu(Aplicacion* App){
 
 }
 
+string Artista::tipoUsuario(){
+    string tipo;
+    tipo="artista";
+    return tipo;
+}

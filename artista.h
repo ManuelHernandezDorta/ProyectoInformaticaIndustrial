@@ -29,6 +29,7 @@ public:
     void crearEvento(Aplicacion* Apli);
     void editarEvento(Evento* E,Aplicacion* Apli);
     void menu(Aplicacion* App);
+    string tipoUsuario();
 
 private:
     string _estiloMusical;
