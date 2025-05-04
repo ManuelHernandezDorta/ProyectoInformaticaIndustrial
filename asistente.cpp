@@ -204,5 +204,8 @@ void Asistente::informaciónArtista(Aplicacion *Apli){
     }
     if(Apli->getUsuario(indiceUsuario)->tipoUsuario()=="artista"){
         Apli->getUsuario(indiceUsuario)->displayUsuario();
+    }else{
+        cout<<"El nombre introducido no pertenece a un artista, introduce otro: "<<endl;
+        this->informaciónArtista(Apli);
     }
 }
