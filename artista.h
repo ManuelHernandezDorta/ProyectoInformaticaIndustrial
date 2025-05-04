@@ -32,6 +32,7 @@ public:
     void menu(Aplicacion* App);
     string tipoUsuario();
     Usuario* editar();
+    Evento* getEventoArtista(int index);
 
 
 private:

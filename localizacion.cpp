@@ -33,11 +33,7 @@ Localizacion::Localizacion(const Localizacion& Loc){
 
 }
 
-Localizacion::~Localizacion(){
-    for (unsigned long i = 0; i < _listaEventos.size(); i++){
-        delete _listaEventos[i];
-    }
-}
+Localizacion::~Localizacion(){}
 
 void Localizacion::displayLocalizacion(){
 

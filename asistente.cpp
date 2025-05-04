@@ -140,6 +140,7 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
                 _cartera=_cartera-Apli->getEvento(index)->getPrecio();
                 cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
             }
+            Apli->getEvento(index)->comprarEntrada();                      //-1 entrada
             Entrada* miEntrada=new Entrada(this, Apli->getEvento(index));
             _listaEntradas.push_back(miEntrada);
                 break;
@@ -180,11 +181,11 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
             _cartera=_cartera-Apli->getEvento(index)->getPrecio();
             cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
         }
+        Apli->getEvento(index)->comprarEntrada();                          //-1 entrada
         Entrada* miEntrada=new Entrada(this, Apli->getEvento(index));
         _listaEntradas.push_back(miEntrada);
 
     }
-
 }
 
 string Asistente::tipoUsuario(){

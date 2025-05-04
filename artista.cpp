@@ -23,11 +23,7 @@ Artista::Artista(string nombreUsuario, string contraseña, const Artista& Art) :
 
 
 
-Artista::~Artista(){
-    for (unsigned long i = 0; i < _listaEventosArtista.size(); i++){
-        delete _listaEventosArtista[i];
-    }
-}
+Artista::~Artista(){}
 
 void Artista::actualizarNombreArtista(const string &nombre){
     _nombreArtista=nombre;
@@ -149,7 +145,74 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
 }
 
 void Artista::menu(Aplicacion* App){
+    int eleccion;
+    string continuar;
 
+    cout << "Menu: " << endl << "0. Crear evento" << endl << "1. Modificar evento" <<endl<< "2. Eliminar evento "<<endl<< "3. Actualizar descripción"<<endl<< "4. Actualizar estilo"<<endl;
+    cin >> eleccion;
+
+    switch (eleccion){
+
+    case 0: {
+        this->crearEvento(App);
+        break;
+    }
+    case 1: {
+        int index;
+        cout<<"Debe seleccionar un índice de evento para editar de su lista que se muestra a continuación:"<<endl;
+        this->displayListaEventos();
+        cin>>index;
+        this->editarEvento(this->getEventoArtista(index),App);
+        break;
+    }
+    case 2: {
+        int index;
+        cout<<"Debe seleccionar un índice de evento para eliminar de su lista que se muestra a continuación:"<<endl;
+        this->displayListaEventos();
+        cin>>index;
+        this->eliminarEvento(this->getEventoArtista(index),App);
+        break;
+    }
+    case 3: {
+        string nuevaDescripcion;
+        cout<<"Introduce una nueva descripción:"<<endl;
+        cin>>nuevaDescripcion;
+        this->actualizarDescripcionArtista(nuevaDescripcion);
+        break;
+    }
+    case 4: {
+        string nuevoEstilo;
+        cout<<"Introduce un nuevo estilo musical:"<<endl;
+        cin>>nuevoEstilo;
+        this->actualizarEstiloArtista(nuevoEstilo);
+        break;
+    }
+    default: {
+            cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+            break;
+    }
+    }
+
+    cout << "Desea realizar otra acion: (S/N): " << endl;
+    cin >> continuar;
+
+    if (continuar == "S" || continuar == "s"){
+        this->menu(App);
+    }
+    else{
+        cout << "Cerrando sesion..." << endl;
+        return;
+    }
+
+}
+
+Evento* Artista::getEventoArtista(int index){
+    int aux = _listaEventosArtista.size();
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
+    }
+    return _listaEventosArtista[index];
 }
 
 string Artista::tipoUsuario(){

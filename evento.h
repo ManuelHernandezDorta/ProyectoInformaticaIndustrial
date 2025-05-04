@@ -28,14 +28,14 @@ public:
     Usuario* getCreador();
     int getPrecio();
     bool comprobarVip();
+    void comprarEntrada();
 
 private:
     string _nombreEvento;
     int _fecha;
     int _precio;
     bool _eventoVip;
-    int _entradasDisponibles;
-    int _entradasTotales;
+    int _entradas;
     Localizacion* _Loc;
     Usuario* _creador;
 };

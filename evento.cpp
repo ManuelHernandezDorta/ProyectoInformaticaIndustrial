@@ -8,8 +8,7 @@ Evento::Evento(){
     _fecha=0;
     _precio=0;
     _eventoVip=0;
-    _entradasDisponibles=0;
-    _entradasTotales=0;
+    _entradas=0;
     _creador=nullptr;
 
 }
@@ -19,8 +18,7 @@ Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Locali
     _fecha = fecha;
     _precio=precio;
     _eventoVip=eventoVip;
-    _entradasTotales=Loc->getAforo();
-    _entradasDisponibles=Loc->getAforo();
+    _entradas=Loc->getAforo();
     _Loc=Loc;
     _creador=creador;
 
@@ -32,8 +30,7 @@ Evento::Evento(const Evento& E){
     _fecha=E._fecha;
     _precio=E._precio;
     _eventoVip=E._eventoVip;
-    _entradasTotales=E._entradasTotales;
-    _entradasDisponibles=E._entradasDisponibles;
+    _entradas=E._entradas;
     _Loc=E._Loc;
 
 }
@@ -51,7 +48,7 @@ void Evento::displayEvento(){
         auxvip="El evento no vip";
     }
 
-    cout<< auxvip <<" se celebra en la fecha:" << _fecha << " ,con un numero total de entradas " << _entradasTotales << ", de las cuales quedan " << _entradasDisponibles << " a un precio de " << _precio << endl;
+    cout<< auxvip <<" se celebra en la fecha:" << _fecha << " ,con un numero total de entradas disponibles de " << _entradas << " a un precio de " << _precio << endl;
 
 }
 
@@ -100,4 +97,8 @@ bool Evento::getEventoVip(){
 
 int Evento::getPrecio(){
     return _precio;
+}
+
+void Evento::comprarEntrada(){
+    _entradas=_entradas-1;
 }
