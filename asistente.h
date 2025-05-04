@@ -24,6 +24,7 @@ public:
     int getCartera();
     bool getVip();
     void comprarEntrada(Aplicacion* Apli);
+    void mostrarEntradas();
     void eventosDisponibles();
     void verArtista(Artista& Art);
     void displayUsuario();

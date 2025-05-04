@@ -22,3 +22,7 @@ Evento* Entrada::getEvento(){
 Asistente* Entrada::getAsistente(){
     return _asistenteAsignado;
 }
+
+void Entrada::displayEntrada(){
+    cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<endl;
+}

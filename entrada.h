@@ -12,6 +12,7 @@ public:
     Entrada();
     Entrada(Asistente* asistenteAsignado, Evento* entradaEvento);
     ~Entrada();
+    void displayEntrada();
     Evento* getEvento();
     Asistente* getAsistente();
 

@@ -53,19 +53,51 @@ void Asistente::displayUsuario(){
     }else{
         auxvip= "no vip";
     }
-    cout << "Tipo: Asistente " << auxvip << ", nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
+    cout << "Tipo: Asistente " << auxvip << ", con nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
+}
+
+void Asistente::mostrarEntradas(){
+    cout << "Número de Entradas totales: " << _listaEntradas.size() << endl;
+    for (unsigned long i = 0; i< _listaEntradas.size(); i++){
+            _listaEntradas[i]->displayEntrada();
+        }
 }
 
 void Asistente::menu(Aplicacion* App){
     int eleccion;
     string continuar;
 
-    cout << "Menu: " << endl << "0. Mostrar lista de eventos" << endl;
+    cout << "Menu: " << endl << "0. Modificar fondos de la cartera" << endl << "1. Ver entradas" <<endl<< "2. Comprar entradas "<<endl<< "3. Ver eventos disponibles"<<endl<< "4. Ver información artista"<<endl;
     cin >> eleccion;
 
+    switch (eleccion){
 
-    if (eleccion == 0){
+    case 0: {
+        int nuevaCartera;
+        cout<<"Ingrese los fondos para actualizar su cartera:"<<endl;
+        cin>>nuevaCartera;
+        this->setCartera(nuevaCartera);
+        break;
+    }
+    case 1: {
+        this->mostrarEntradas();
+        break;
+    }
+    case 2: {
+        this->comprarEntrada(App);
+        break;
+    }
+    case 3: {
         App->displayEventos();
+        break;
+    }
+    case 4: {
+        break;
+    }
+    default: {
+            cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+            break;
+    }
     }
 
     cout << "Desea realizar otra acion: (S/N): " << endl;
@@ -98,11 +130,11 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
             cin>>index;
             if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
                 cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
-                return;                                                 //o meter un bucle while para que siga introduciendo índices
+                this->comprarEntrada(Apli);                                                 //o meter un bucle while para que siga introduciendo índices
             }
             if(_cartera<Apli->getEvento(index)->getPrecio()){
                 cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
-                return;
+                this->comprarEntrada(Apli);
             }else{
                 _cartera=_cartera-Apli->getEvento(index)->getPrecio();
                 cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
@@ -130,19 +162,19 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
         cin>>index;
         if(Apli->getEvento(index)->getEventoVip()){
             cout<<"El evento seleccionado es VIP y no puede comprar entradas"<<endl;
-            return;
+            this->comprarEntrada(Apli);
         }
         if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
             cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
-            return;                                                 //o meter un bucle while para que siga introduciendo índices
+            this->comprarEntrada(Apli);                                                //o meter un bucle while para que siga introduciendo índices
         }
         if(Apli->fechaAsistenteUnMes(Apli->getEvento(index)->getFecha())){
             cout<<"No es posible comprar entradas con más de un mes de antelación"<<endl;
-            return;                                                 //o meter un bucle while para que siga introduciendo índices
+            this->comprarEntrada(Apli);                                                 //o meter un bucle while para que siga introduciendo índices
         }
         if(_cartera<Apli->getEvento(index)->getPrecio()){
             cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
-            return;
+            this->comprarEntrada(Apli);
         }else{
             _cartera=_cartera-Apli->getEvento(index)->getPrecio();
             cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
