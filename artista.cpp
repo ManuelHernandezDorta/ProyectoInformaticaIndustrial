@@ -69,7 +69,7 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "Introduce el nombre del evento: ";
     cin >> nombreEvento;
 
-    cout << "Introduce la fecha (día, mes, año): ";
+    cout << "Introduce la fecha (año,mes,dia): ";
     cin >> fecha;
     Apli->getLocalizacion(index)->coincideFecha(fecha);
 
@@ -116,7 +116,7 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
                 cin >> nuevoNombre;
                     E->setNombre(nuevoNombre);
 
-                cout << "Ingrese el nueva fecha del evento: "<<endl;
+                cout << "Ingrese el nueva fecha del evento (año,mes,dia) incluyendo ceros si son menores a 2 digitos: "<<endl;
                 cin>> nuevaFecha;
                     E->setFecha(nuevaFecha);
 

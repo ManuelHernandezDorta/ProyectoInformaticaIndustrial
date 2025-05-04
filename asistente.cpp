@@ -96,7 +96,7 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
             Apli->displayEventos();
             cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
             cin>>index;
-            if(Apli->getfechaActual()<Apli->getEvento(index)->getFecha()){
+            if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
                 cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
                 return;                                                 //o meter un bucle while para que siga introduciendo índices
             }
@@ -128,11 +128,11 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
         Apli->displayEventos();
         cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
         cin>>index;
-        if(Apli->getfechaActual()<Apli->getEvento(index)->getFecha()){
+        if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
             cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
             return;                                                 //o meter un bucle while para que siga introduciendo índices
         }
-        if(Apli->getfechaActual()+1>Apli->getEvento(index)->getFecha()){
+        if(Apli->fechaAsistenteUnMes(Apli->getEvento(index)->getFecha())){
             cout<<"No es posible comprar entradas con más de un mes de antelación"<<endl;
             return;                                                 //o meter un bucle while para que siga introduciendo índices
         }

@@ -38,6 +38,8 @@ public:
     void crearAsistente();
     void crearArtista();
     int getfechaActual();
+    bool fechaConcluida(int fecha);
+    bool fechaAsistenteUnMes(int fecha);
 
 private:
     vector<Usuario*> _listaUsuarios;

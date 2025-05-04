@@ -269,16 +269,39 @@ void Aplicacion::crearArtista(){
 }
 
 int Aplicacion::getfechaActual(){
-    time_t tiempo_actual = std::time(nullptr);
-    tm* fecha_actual = std::localtime(&tiempo_actual);
 
-        ostringstream oss;
-        oss << fecha_actual->tm_mday
-            << fecha_actual->tm_mon + 1
-            << (fecha_actual->tm_year + 1900);
+    time_t tiempo_actual = time(nullptr);
+    tm* fecha_actual = localtime(&tiempo_actual);
 
-        // Convertir la cadena a entero
-        int fecha_actual_entero = stoi(oss.str());
-        return fecha_actual_entero;
+    int dia = fecha_actual->tm_mday;
+    int mes = fecha_actual->tm_mon + 1;
+    int ano = fecha_actual->tm_year + 1900;
+
+    stringstream fecha_stream;
+
+    fecha_stream << setw(4) << setfill('0') << ano
+                 << setw(2) << setfill('0') << mes
+                 << setw(2) << setfill('0') << dia;
+
+    int fecha_actual_entero = std::stoi(fecha_stream.str());
+    return fecha_actual_entero;
 }
 
+bool Aplicacion::fechaConcluida(int fecha){
+    int fechaActual= this->getfechaActual();
+    return fechaActual>fecha;
+}
+
+bool Aplicacion::fechaAsistenteUnMes(int fecha){
+    int mes = (fecha / 100) % 100;
+    int ano = fecha / 10000;
+    int dia = fecha % 100;
+    mes -= 1;
+    if (mes < 1) {
+        mes = 12;
+        ano=ano-1;
+            }
+    int fecha_ajustada = ano * 10000 + mes * 100 + dia;
+    int fechaActual=this->getfechaActual();
+    return fechaActual>fecha_ajustada;
+}
