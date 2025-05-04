@@ -128,6 +128,10 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
         Apli->displayEventos();
         cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
         cin>>index;
+        if(Apli->getEvento(index)->getEventoVip()){
+            cout<<"El evento seleccionado es VIP y no puede comprar entradas"<<endl;
+            return;
+        }
         if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
             cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
             return;                                                 //o meter un bucle while para que siga introduciendo índices
