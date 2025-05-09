@@ -53,7 +53,7 @@ void Asistente::displayUsuario(){
     }else{
         auxvip= "no vip";
     }
-    cout << "Tipo: Asistente " << auxvip << ", con nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
+    cout << "Tipo: Asistente " << auxvip << ", nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", DNI: " << _dni << ", cartera: " <<_cartera << endl;
 }
 
 void Asistente::mostrarEntradas(){
