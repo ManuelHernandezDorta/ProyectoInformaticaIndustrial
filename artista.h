@@ -7,6 +7,7 @@
 #include <vector>
 
 
+
 using namespace std;
 
 class Aplicacion;
@@ -25,6 +26,7 @@ public:
     string getEstiloArtista();
     string getDescripcionArtista();
     void displayUsuario();
+    friend ostream& operator<<(ostream& os, Artista& artista);
     void displayListaEventos();
     void eliminarEvento(Evento* E, Aplicacion* Apli);
     void crearEvento(Aplicacion* Apli);

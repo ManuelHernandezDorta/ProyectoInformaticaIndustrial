@@ -62,6 +62,11 @@ void Artista::displayListaEventos(){
     }
 }
 
+ostream& operator<<(ostream& os, Artista& artista){
+    artista.displayListaEventos();
+    return os;
+}
+
 void Artista::crearEvento(Aplicacion* Apli){
     string nombreEvento;
     int precio, index, fecha;
@@ -175,7 +180,7 @@ void Artista::menu(Aplicacion* App){
     case 1: {
         int index;
         cout<<"Debe seleccionar un índice de evento para editar de su lista que se muestra a continuación:"<<endl;
-        this->displayListaEventos();
+        cout<<*this;
         cin>>index;
         this->editarEvento(this->getEventoArtista(index),App);
         break;
