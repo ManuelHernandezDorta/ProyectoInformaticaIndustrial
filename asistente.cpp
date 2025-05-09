@@ -212,5 +212,80 @@ void Asistente::informaciónArtista(Aplicacion *Apli){
 }
 
 Usuario* Asistente::editar(){
+    int eleccion;
+    cout << "Que campo desea editar: " << endl << "0. nombre de usuario" << endl << "1. contraseña" << endl <<"2. DNI" << endl << "3. cartera" << endl << "4. estado VIP" << endl;
+    cin >> eleccion;
 
+    switch (eleccion) {
+
+    case 0:{
+        string nuevoNombre;
+        cout << "Introduce el nuevo nombre: " << endl;
+        cin >> nuevoNombre;
+
+        Usuario* nuevoAsistente = new Asistente(nuevoNombre, _contraseña, _dni, _cartera, _vip);
+        return nuevoAsistente;
+
+        break;
+        }
+
+    case 1:{
+        string nuevaContraseña;
+        cout << "Introduce la nueva contraseña: " << endl;
+        cin >> nuevaContraseña;
+
+        Usuario* nuevoAsistente = new Asistente(_nombreUsuario, nuevaContraseña, _dni, _cartera, _vip);
+        return nuevoAsistente;
+
+        break;
+        }
+
+    case 2:{
+        string nuevoDni;
+        cout << "Introduce el nuevo DNI: " << endl;
+        cin >> nuevoDni;
+
+        Usuario* nuevoAsistente = new Asistente(_nombreUsuario, _contraseña, nuevoDni, _cartera, _vip);
+        return nuevoAsistente;
+
+        break;
+        }
+
+    case 3:{
+        int nuevaCartera;
+        cout << "Introduce el nuevo valor de la cartera: " << endl;
+        cin >> nuevaCartera;
+
+        Usuario* nuevoAsistente = new Asistente(_nombreUsuario, _contraseña, _dni, nuevaCartera, _vip);
+        return nuevoAsistente;
+
+        break;
+        }
+
+    case 4:{
+        string eleccion;
+        bool nuevoVip;
+        cout << "Introduce el nuevo estado de Vip: (S/N)" << endl;
+        cin >> eleccion;
+
+        if (eleccion == "S" || eleccion == "s"){
+            nuevoVip = true;
+        }
+        else{
+            nuevoVip= false;
+        }
+
+        Usuario* nuevoAsistente = new Asistente(_nombreUsuario, _contraseña, _dni, _cartera, nuevoVip);
+        return nuevoAsistente;
+
+        break;
+        }
+
+    default:{
+        cout << "Esa no es una opcion valida, vuelve a intentarlo" << endl;
+        return this;
+        this->editar();
+        break;
+        }
+    }
 }

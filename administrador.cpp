@@ -46,6 +46,10 @@ void Administrador::menu(Aplicacion* App){
         case(3):
             App->borrarUsuario();
             break;
+
+        default:
+            cout << "Esa no es una opcion valida, selecciona una nuevamente: " << endl;
+            this->menu(App);
         }
 
     cout << "Desea realizar otra acion: (S/N): " << endl;
