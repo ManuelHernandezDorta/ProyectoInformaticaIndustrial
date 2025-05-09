@@ -38,6 +38,7 @@ public:
     void crearUsuarioRoot();
     void crearAsistente();
     void crearArtista();
+    void crearLocalizacion();
     void crearAdministrador();
     int getfechaActual();
     bool fechaConcluida(int fecha);

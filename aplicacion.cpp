@@ -303,6 +303,25 @@ void Aplicacion::crearArtista(){
 
 }
 
+void Aplicacion::crearLocalizacion(){
+    string nombre, direccion;
+    int aforo;
+
+    cout << "Introduce los datos que se piden" << endl;
+
+    cout << "nombre: " << endl;
+    cin >> nombre;
+
+    cout << "dirección: " << endl;
+    cin >> direccion;
+
+    cout << "aforo: " << endl;
+    cin >> aforo;
+
+    Localizacion* localizacion =  new Localizacion (nombre, direccion, aforo);
+    this->anadirLocalizacion(localizacion);
+
+}
 
 void Aplicacion::crearAdministrador(){
     string nombre, contraseña;
@@ -383,21 +402,23 @@ bool Aplicacion::fechaAsistenteUnMes(int fecha){
 void Aplicacion::borrarUsuario(){
 
     string nombre;
-    cout << "Introduce el nombre de usuario que desea borrar: " << endl;
-    cin >>  nombre;
+    int indiceUsuario;
 
-    int indiceUsuario = buscarUsuario(nombre);
+    do{
+        cout << "Introduce el nombre de usuario que desea borrar: " << endl;
+        cin >>  nombre;
+
+        indiceUsuario = buscarUsuario(nombre);
+
+    }while(indiceUsuario == -1);
 
     if (nombre == "root"){
         cout << "No se puede eliminar el usuario root" << endl;
         this->borrarUsuario();
     }
 
-    if (indiceUsuario < 0){
-        cout << "No existe ningun usuario con ese nombre, prueba de nuevo" << endl;
-        this->borrarUsuario();
-    }
     else{
+        cout << "Se ha borrado el usuario correctamente" << endl;
         _listaUsuarios.erase(_listaUsuarios.begin() + indiceUsuario);
     }
 }

@@ -25,7 +25,7 @@ void Administrador::menu(Aplicacion* App){
     int eleccion;
     string continuar;
 
-    cout << "Menu: " << endl << "0. Mostrar lista de usuarios" << endl << "1. Crear Usuario" << endl << "2. Editar Usuario" << endl << "3. Borrar Usuario" << endl;
+    cout << "Menu: " << endl << "0. Mostrar lista de usuarios" << endl << "1. Crear Usuario" << endl << "2. Editar Usuario" << endl << "3. Borrar Usuario" << endl << "4. Crear una localizacion" << endl;
     cin >> eleccion;
 
 
@@ -45,6 +45,10 @@ void Administrador::menu(Aplicacion* App){
 
         case(3):
             App->borrarUsuario();
+            break;
+
+        case(4):
+            App->crearLocalizacion();
             break;
 
         default:

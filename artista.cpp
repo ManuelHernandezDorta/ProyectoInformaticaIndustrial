@@ -240,7 +240,7 @@ string Artista::tipoUsuario(){
 Usuario* Artista::editar(){
     int eleccion;
 
-    cout << "Menu: " << endl << "0. Nombre usuario" << endl << "1. Contraseña" <<endl<< "2. Modificar estilo musical" << endl << "3. Modificar descripción" <<endl<< "4. Modificar nombre "<<endl<< "5. Modificar lista de eventos"<<endl;
+    cout << "Menu: " << endl << "0. Nombre usuario" << endl << "1. Contraseña" <<endl<< "2. Modificar estilo musical" << endl << "3. Modificar descripción" <<endl<< "4. Modificar nombre "<<endl;
     cin >> eleccion;
 
     switch (eleccion){
@@ -284,15 +284,7 @@ Usuario* Artista::editar(){
         string nuevoNombre;
         cout<<"Introduce un nuevo nombre para el artista:"<<endl;
         cin>>nuevoNombre;
-        this->actualizarEstiloArtista(nuevoNombre);
-        return this;
-        break;
-    }
-    case 5: {
-        string nuevaDescripcion;
-        cout<<"Introduce una nueva descripción:"<<endl;
-        cin>>nuevaDescripcion;
-        this->actualizarDescripcionArtista(nuevaDescripcion);
+        this->actualizarNombreArtista(nuevoNombre);
         return this;
         break;
     }
