@@ -50,13 +50,14 @@ string Artista::getNombreArtista(){
 }
 
 void Artista::displayUsuario(){
-    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << "con lista de eventos:" << endl;
+    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << "lista de eventos: " << endl;
     this->displayListaEventos();
 }
 
 void Artista::displayListaEventos(){
     cout << "Número de Eventos totales: " << _listaEventosArtista.size() << endl;
     for (unsigned long i = 0; i< _listaEventosArtista.size(); i++){
+        cout<<i<<"-";
         _listaEventosArtista[i]->displayEvento();
     }
 }
@@ -111,38 +112,52 @@ void Artista::eliminarEvento(Evento* E, Aplicacion* Apli) {
 void Artista::editarEvento(Evento* E,Aplicacion* Apli){
         for (unsigned i = 0; i < _listaEventosArtista.size(); ++i) {
             if (_listaEventosArtista[i] == E) {
-                string nuevoNombre;
-                int nuevaFecha, nuevoPrecio, index;
-                bool nuevoEventoVip;
+                int eleccion;
+                cout << "Menu Modificar: " << endl << "0. Nombre evento" << endl << "1. Fecha" <<endl<< "2. Precio" << endl << "3. Localizacion" <<endl;
+                cin >> eleccion;
 
-                cout << "Modificar evento: " << endl;
-                cout << "Ingrese el nuevo nombre del evento: "<<endl;
-                cin >> nuevoNombre;
+                switch (eleccion){
+
+                case 0: {
+                    string nuevoNombre;
+                    cout << "Introduce el nuevo nombre: " << endl;
+                    cin >> nuevoNombre;
                     E->setNombre(nuevoNombre);
-
-                cout << "Ingrese el nueva fecha del evento (año,mes,dia) incluyendo ceros si son menores a 2 digitos: "<<endl;
-                cin>> nuevaFecha;
+                    break;
+                }
+                case 1: {
+                    int nuevaFecha;
+                    cout << "Introduce la nueva fecha: " << endl;
+                    cin >> nuevaFecha;
                     E->setFecha(nuevaFecha);
-
-                cout << "Ingrese el nuevo precio del evento: ";
-                cin >> nuevoPrecio;
+                    break;
+                }
+                case 2: {
+                    int nuevoPrecio;
+                    cout<<"Introduce un nuevo precio:"<<endl;
+                    cin>>nuevoPrecio;
                     E->setPrecio(nuevoPrecio);
+                    break;
+                }
+                case 3: {
+                    int index;
+                    cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
+                    Apli->displayLocalizaciones();
+                    cin>>index;
+                    E->setLocalizacion(Apli->getLocalizacion(index));
+                    break;
+                }
 
-                cout << "¿Es el evento VIP? (1 para sí, 0 para no): ";
-                cin >> nuevoEventoVip;
-                    E->setEventoVip(nuevoEventoVip);
-
-                cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
-                Apli->displayLocalizaciones();
-                cin>>index;
-                E->setLocalizacion(Apli->getLocalizacion(index));
-
-                cout << "El evento ha sido editado correctamente." << endl;
-                return;
+                default:{
+                    cout << "Esa no es una opcion valida, vuelve a intentarlo" << endl;
+                    this->editarEvento(E,Apli);
+                    break;
+                    }
+                }
             }
         }
-        cout << "No se encontró el evento para editar." << endl;
 }
+
 
 void Artista::menu(Aplicacion* App){
     int eleccion;
@@ -189,6 +204,7 @@ void Artista::menu(Aplicacion* App){
     }
     default: {
             cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+            this->menu(App);
             break;
     }
     }
@@ -222,5 +238,70 @@ string Artista::tipoUsuario(){
 }
 
 Usuario* Artista::editar(){
+    int eleccion;
 
+    cout << "Menu: " << endl << "0. Nombre usuario" << endl << "1. Contraseña" <<endl<< "2. Modificar estilo musical" << endl << "3. Modificar descripción" <<endl<< "4. Modificar nombre "<<endl<< "5. Modificar lista de eventos"<<endl;
+    cin >> eleccion;
+
+    switch (eleccion){
+
+
+    case 0: {
+        string nuevoNombre;
+        cout << "Introduce el nuevo nombre: " << endl;
+        cin >> nuevoNombre;
+
+        Usuario* nuevoArtista = new Artista(nuevoNombre, _contraseña, _nombreArtista, _estiloMusical, _descripcion);
+        return nuevoArtista;
+        break;
+    }
+    case 1: {
+        string nuevaContraseña;
+        cout << "Introduce la nueva contraseña: " << endl;
+        cin >> nuevaContraseña;
+
+        Usuario* nuevoArtista = new Artista(_nombreUsuario, nuevaContraseña, _nombreArtista, _estiloMusical, _descripcion);
+        return nuevoArtista;
+        break;
+    }
+    case 2: {
+        string nuevoEstilo;
+        cout<<"Introduce un nuevo estilo musical:"<<endl;
+        cin>>nuevoEstilo;
+        this->actualizarEstiloArtista(nuevoEstilo);
+        return this;
+        break;
+    }
+    case 3: {
+        string nuevaDescripcion;
+        cout<<"Introdruce la nueva descripcion del artista: "<<endl;
+        cin>>nuevaDescripcion;
+        this->actualizarDescripcionArtista(nuevaDescripcion);
+        return this;
+        break;
+    }
+    case 4: {
+        string nuevoNombre;
+        cout<<"Introduce un nuevo nombre para el artista:"<<endl;
+        cin>>nuevoNombre;
+        this->actualizarEstiloArtista(nuevoNombre);
+        return this;
+        break;
+    }
+    case 5: {
+        string nuevaDescripcion;
+        cout<<"Introduce una nueva descripción:"<<endl;
+        cin>>nuevaDescripcion;
+        this->actualizarDescripcionArtista(nuevaDescripcion);
+        return this;
+        break;
+    }
+    default:{
+        cout << "Esa no es una opcion valida, vuelve a intentarlo" << endl;
+        return this;
+        this->editar();
+        break;
+        }
+    }
 }
+
