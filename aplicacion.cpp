@@ -27,6 +27,7 @@ Aplicacion::~Aplicacion(){
 void Aplicacion::displayUsuarios(){
     cout << "Numero total de usuarios: " << _listaUsuarios.size() << endl;
     for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
+        cout<<i<<"-";
         _listaUsuarios[i]->displayUsuario();
     }
 }
@@ -34,6 +35,7 @@ void Aplicacion::displayUsuarios(){
 void Aplicacion::displayLocalizaciones(){
         cout << "Número de localizaciones totales: " << _listaLocalizaciones.size() << endl;
         for (unsigned long i = 0; i< _listaLocalizaciones.size(); i++){
+            cout<<i<<"-";
             _listaLocalizaciones[i]->displayLocalizacion();
         }
 }
@@ -41,6 +43,7 @@ void Aplicacion::displayLocalizaciones(){
 void Aplicacion::displayEventos(){
     cout << "Número de Eventos totales: " << _listaEventos.size() << endl;
     for (unsigned long i = 0; i< _listaEventos.size(); i++){
+        cout<<i<<"-";
         _listaEventos[i]->displayEvento();
     }
 }
@@ -103,7 +106,7 @@ Localizacion* Aplicacion::getLocalizacion(int index){
 }
 
 Evento* Aplicacion::getEvento(int index){
-    int aux = _listaLocalizaciones.size();
+    int aux = _listaEventos.size();
     while (index < 0 || index >= aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
         cin >> index;
@@ -167,7 +170,7 @@ void Aplicacion::menuPrincipal(){
 void Aplicacion::iniciarSesion(){
 
     string nombre, contraseña;
-    cout << "Introduce el nombre de usuario para registrarte: " << endl;
+    cout << "Introduce el nombre de usuario para iniciar sesión: " << endl;
     cin >>  nombre;
 
     int indiceUsuario = buscarUsuario(nombre);
@@ -386,17 +389,17 @@ bool Aplicacion::fechaConcluida(int fecha){
 }
 
 bool Aplicacion::fechaAsistenteUnMes(int fecha){
-    int mes = (fecha / 100) % 100;
-    int ano = fecha / 10000;
-    int dia = fecha % 100;
-    mes -= 1;
-    if (mes < 1) {
-        mes = 12;
-        ano=ano-1;
-            }
-    int fecha_ajustada = ano * 10000 + mes * 100 + dia;
     int fechaActual=this->getfechaActual();
-    return fechaActual>fecha_ajustada;
+    int mes = (fechaActual / 100) % 100;
+    int ano = fechaActual / 10000;
+    int dia = fechaActual % 100;
+    mes = mes + 1;
+    if (mes > 12) {
+        mes = 1;
+        ano=ano+1;
+            }
+    fechaActual = ano * 10000 + mes * 100 + dia;
+    return fecha>fechaActual;
 }
 
 void Aplicacion::borrarUsuario(){

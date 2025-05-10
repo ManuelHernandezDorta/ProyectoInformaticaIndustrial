@@ -71,7 +71,7 @@ void Localizacion::coincideFecha(int& fecha){
         for (unsigned long i=0; i<_listaEventos.size();i++){
             if(_listaEventos[i]->getFecha()==fecha){
                 cout<<"La fecha está ocupada por el evento: " << _listaEventos[i]->getNombre()<<endl;
-                cout<< "Introduce la nueva fecha con el formato dia,mes,año. Por ejemplo 04092025"<<endl;
+                cout<< "Introduce la nueva fecha con el formato año,mes,dia (AAAA/MM/DD)"<<endl;
                 cin>>fecha;
                 fechaOcupada=true;
                 break;

@@ -6,7 +6,6 @@ using namespace std;
 int main(){
 
     Aplicacion App;
-
     string desicion;
     bool continuar = false;
 

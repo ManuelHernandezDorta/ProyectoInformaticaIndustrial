@@ -79,7 +79,7 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "Introduce el nombre del evento: ";
     cin >> nombreEvento;
 
-    cout << "Introduce la fecha (año,mes,dia): ";
+    cout << "Introduce la fecha (año,mes,dia) con formato (AAAA/MM/DD): ";
     cin >> fecha;
     Apli->getLocalizacion(index)->coincideFecha(fecha);
 

@@ -45,7 +45,7 @@ void Evento::displayEvento(){
         auxvip="El evento no vip";
     }
 
-    cout<< auxvip <<" se celebra en la fecha:" << _fecha << " ,con un numero total de entradas disponibles de " << _entradas << " a un precio de " << _precio << endl;
+    cout<< auxvip << ":"<< _nombreEvento << " se celebra en la fecha:" << _fecha << " ,con un numero total de entradas disponibles de " << _entradas << " a un precio de " << _precio << endl;
 
 }
 

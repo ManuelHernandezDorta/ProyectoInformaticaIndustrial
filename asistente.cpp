@@ -131,11 +131,11 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
             cin>>index;
             if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
                 cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
-                this->comprarEntrada(Apli);                                                 //o meter un bucle while para que siga introduciendo índices
+                return;
             }
             if(_cartera<Apli->getEvento(index)->getPrecio()){
                 cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
-                this->comprarEntrada(Apli);
+                return;
             }else{
                 _cartera=_cartera-Apli->getEvento(index)->getPrecio();
                 cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
@@ -164,19 +164,19 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
         cin>>index;
         if(Apli->getEvento(index)->getEventoVip()){
             cout<<"El evento seleccionado es VIP y no puede comprar entradas"<<endl;
-            this->comprarEntrada(Apli);
+            return;
         }
         if(Apli->fechaConcluida(Apli->getEvento(index)->getFecha())){
             cout<<"El evento seleccionado ya ha concluido y no se pueden comprar entradas";
-            this->comprarEntrada(Apli);                                                //o meter un bucle while para que siga introduciendo índices
+            return;
         }
         if(Apli->fechaAsistenteUnMes(Apli->getEvento(index)->getFecha())){
             cout<<"No es posible comprar entradas con más de un mes de antelación"<<endl;
-            this->comprarEntrada(Apli);                                                 //o meter un bucle while para que siga introduciendo índices
+            return;
         }
         if(_cartera<Apli->getEvento(index)->getPrecio()){
             cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
-            this->comprarEntrada(Apli);
+            return;
         }else{
             _cartera=_cartera-Apli->getEvento(index)->getPrecio();
             cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< Apli->getEvento(index)->getPrecio() <<endl;
