@@ -118,7 +118,7 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
     int eleccionsecundario;
     int index;
     int precio;
-    cout << "Selecciona el tipo de proceso que quieres realizar en el mercado secundario: " << endl << "0. Vender entrada en el mercado secundario  " << endl << "1. Comprar entrada en el mercado secundario " << endl;
+    cout << "Selecciona el tipo de proceso que quieres realizar en el mercado secundario: " << endl << "0. Vender entrada en el mercado secundario  " << endl << "1. Comprar entrada en el mercado secundario " << endl << "2. Mostrar entradas disponibles en el mercado secundario"<<endl;
     cin >> eleccionsecundario;
 
     switch (eleccionsecundario){
@@ -162,12 +162,17 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
         En2->setAsistente(this);                                              //Se asigna la entrada al nuevo usuario
         Apli->eliminarEntradaMercado(En2);                                    //Se elimina la entrada del mercado secundario
         break;
-}
+    }
+    case 2: {
+        cout<<"A continuación se muestra la lista de entradas en reventa:"<<endl;
+        Apli->displayEntradasMercadoSecundario();
+        break;
+    }
 
-default: {
+    default: {
         cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
         break;
-}
+    }
 
    }
    }else{
