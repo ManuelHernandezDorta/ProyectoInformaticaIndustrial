@@ -15,10 +15,13 @@ public:
     void displayEntrada();
     Evento* getEvento();
     Asistente* getAsistente();
+    int getPrecioMercadoSecundario();
+    void setPrecioMercadoSecundario(const int precio);
 
 private:
     Asistente* _asistenteAsignado;
     Evento* _entradaEvento;
+    int _precioMercadoSecundario;
 };
 
 #endif // ENTRADA_H

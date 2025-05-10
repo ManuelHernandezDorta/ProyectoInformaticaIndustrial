@@ -3,11 +3,13 @@
 Entrada::Entrada(){
     _entradaEvento=nullptr;
     _asistenteAsignado=nullptr;
+    _precioMercadoSecundario=0;
 }
 
 Entrada::Entrada(Asistente* asistenteAsignado, Evento* entradaEvento){
     _asistenteAsignado=asistenteAsignado;
     _entradaEvento=entradaEvento;
+    _precioMercadoSecundario=0;
 }
 
 Entrada::~Entrada(){
@@ -21,6 +23,14 @@ Evento* Entrada::getEvento(){
 
 Asistente* Entrada::getAsistente(){
     return _asistenteAsignado;
+}
+
+int Entrada::getPrecioMercadoSecundario(){
+    return _precioMercadoSecundario;
+}
+
+void Entrada::setPrecioMercadoSecundario(const int precio){
+    _precioMercadoSecundario=precio;
 }
 
 void Entrada::displayEntrada(){

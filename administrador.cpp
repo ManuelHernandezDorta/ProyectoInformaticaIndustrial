@@ -23,7 +23,9 @@ void Administrador::displayUsuario(){
 
 void Administrador::menu(Aplicacion* App){
     int eleccion;
-    string continuar;
+    string continuar = "S";
+
+    while (continuar == "S" || continuar == "s") {
 
     cout << "Menu: " << endl << "0. Mostrar lista de usuarios" << endl << "1. Crear Usuario" << endl << "2. Editar Usuario" << endl << "3. Borrar Usuario" << endl << "4. Crear una localizacion" << endl;
     cin >> eleccion;
@@ -53,21 +55,16 @@ void Administrador::menu(Aplicacion* App){
 
         default:
             cout << "Esa no es una opcion valida, selecciona una nuevamente: " << endl;
-            this->menu(App);
+            break;
         }
-
     cout << "Desea realizar otra acion: (S/N): " << endl;
-    cin >> continuar;
-
-    if (continuar == "S" || continuar == "s"){
-        this->menu(App);
+    getline(cin >> ws, continuar);
     }
-    else{
+
         cout << "Cerrando sesion..." << endl;
         return;
-    }
-
 }
+
 
 Usuario* Administrador::editar(){
     int eleccion;

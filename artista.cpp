@@ -75,6 +75,11 @@ void Artista::crearEvento(Aplicacion* Apli){
     Apli->displayLocalizaciones();
     cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " <<endl;
     cin>>index;
+    Localizacion* loc=Apli->getLocalizacion(index);
+    if(loc==nullptr){
+        cout<<"Volviendo al menú"<<endl;
+        return;
+    }
 
     cout << "Introduce el nombre del evento: ";
     cin >> nombreEvento;
@@ -90,7 +95,7 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "¿Es un evento VIP? (1 = Sí, 0 = No): ";
     cin >> esVip;
 
-    Evento* miEvento=new Evento(nombreEvento, fecha, precio, esVip, Apli->getLocalizacion(index), this);
+    Evento* miEvento=new Evento(nombreEvento, fecha, precio, esVip, loc, this);
     _listaEventosArtista.push_back(miEvento);                    //Añadimos el evento a la lista de eventos del artista
     Apli->getLocalizacion(index)->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
     Apli->anadirEvento(miEvento);                              //Añadimos el evento a la lista de eventos de la aplicacion
@@ -149,7 +154,12 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
                     cout << "Ingrese un nuevo índice para la localizacion del evento, a continuación se muestran las disponibles: " <<endl;
                     Apli->displayLocalizaciones();
                     cin>>index;
-                    E->setLocalizacion(Apli->getLocalizacion(index));
+                    Localizacion* loc=Apli->getLocalizacion(index);
+                    if(loc==nullptr){
+                        cout<<"Volviendo al menú"<<endl;
+                        return;
+                    }
+                    E->setLocalizacion(loc);
                     break;
                 }
 
@@ -166,7 +176,9 @@ void Artista::editarEvento(Evento* E,Aplicacion* Apli){
 
 void Artista::menu(Aplicacion* App){
     int eleccion;
-    string continuar;
+    string continuar = "S";
+
+    while (continuar == "S" || continuar == "s") {
 
     cout << "Menu: " << endl << "0. Crear evento" << endl << "1. Modificar evento" <<endl<< "2. Eliminar evento "<<endl<< "3. Actualizar descripción"<<endl<< "4. Actualizar estilo"<<endl;
     cin >> eleccion;
@@ -182,7 +194,12 @@ void Artista::menu(Aplicacion* App){
         cout<<"Debe seleccionar un índice de evento para editar de su lista que se muestra a continuación:"<<endl;
         cout<<*this;
         cin>>index;
-        this->editarEvento(this->getEventoArtista(index),App);
+        Evento* Ev=this->getEventoArtista(index);
+        if(Ev==nullptr){
+            cout<<"Volviendo al menú"<<endl;
+            continue;
+        }
+        this->editarEvento(Ev,App);
         break;
     }
     case 2: {
@@ -190,7 +207,12 @@ void Artista::menu(Aplicacion* App){
         cout<<"Debe seleccionar un índice de evento para eliminar de su lista que se muestra a continuación:"<<endl;
         this->displayListaEventos();
         cin>>index;
-        this->eliminarEvento(this->getEventoArtista(index),App);
+        Evento* Ev=this->getEventoArtista(index);
+        if(Ev==nullptr){
+            cout<<"Volviendo al menú"<<endl;
+            continue;
+        }
+        this->eliminarEvento(Ev,App);
         break;
     }
     case 3: {
@@ -209,26 +231,23 @@ void Artista::menu(Aplicacion* App){
     }
     default: {
             cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
-            this->menu(App);
             break;
     }
     }
 
     cout << "Desea realizar otra acion: (S/N): " << endl;
     cin >> continuar;
-
-    if (continuar == "S" || continuar == "s"){
-        this->menu(App);
     }
-    else{
         cout << "Cerrando sesion..." << endl;
         return;
-    }
-
 }
 
 Evento* Artista::getEventoArtista(int index){
     int aux = _listaEventosArtista.size();
+    if(aux==0){
+        cout<<"No hay eventos propios disponibles"<<endl;
+        return nullptr;
+    }
     while (index < 0 || index >= aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
         cin >> index;

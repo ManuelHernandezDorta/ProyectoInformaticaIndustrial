@@ -48,6 +48,14 @@ void Aplicacion::displayEventos(){
     }
 }
 
+void Aplicacion::displayEntradasMercadoSecundario(){
+    cout << "Número de Entradas totales: " << _listaEntradasMercadoSecundario.size() << endl;
+    for (unsigned long i = 0; i< _listaEntradasMercadoSecundario.size(); i++){
+        cout<<i<<"-";
+        _listaEntradasMercadoSecundario[i]->displayEntrada();
+    }
+}
+
 void Aplicacion::anadirEvento(Evento* E){
     _listaEventos.push_back(E);
 }
@@ -58,6 +66,10 @@ void Aplicacion::anadirLocalizacion(Localizacion *Loc){
 
 void Aplicacion::anadirUsuario(Usuario *U){
     _listaUsuarios.push_back(U);
+}
+
+void Aplicacion::anadirEntrada(Entrada *entrada){
+    _listaEntradasMercadoSecundario.push_back(entrada);
 }
 
 void Aplicacion::eliminarEvento(Evento* E){
@@ -96,8 +108,23 @@ void Aplicacion::eliminarUsuario(Usuario* U){
     cout<<"El evento no se encuentra en la lista"<<endl;
 }
 
+void Aplicacion::eliminarEntradaMercado(Entrada *entrada){
+    for(unsigned i=0;i<_listaEntradasMercadoSecundario.size();i++){
+        if (_listaEntradasMercadoSecundario[i] == entrada) {
+            _listaEntradasMercadoSecundario.erase(_listaEntradasMercadoSecundario.begin() + i);
+            cout << "Entrada eliminada correctamente del mercado secundario"<< endl;
+            return;
+            }
+    }
+    cout<<"La entrada no se encuentra en el mercado secundario"<<endl;
+}
+
 Localizacion* Aplicacion::getLocalizacion(int index){
     int aux = _listaLocalizaciones.size();
+    if(aux==0){
+        cout<<"No hay localizacion disponibles"<<endl;
+        return nullptr;
+    }
     while (index < 0 || index >= aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
         cin >> index;
@@ -107,6 +134,10 @@ Localizacion* Aplicacion::getLocalizacion(int index){
 
 Evento* Aplicacion::getEvento(int index){
     int aux = _listaEventos.size();
+    if(aux==0){
+        cout<<"No hay eventos disponibles"<<endl;
+        return nullptr;
+    }
     while (index < 0 || index >= aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de localizaciones ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
         cin >> index;
@@ -116,11 +147,28 @@ Evento* Aplicacion::getEvento(int index){
 
 Usuario* Aplicacion::getUsuario(int index){
     int aux = _listaUsuarios.size();
+    if(aux==0){
+        cout<<"No hay usuarios disponibles"<<endl;
+        return nullptr;
+    }
     while (index < 0 || index >= aux){
         cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de usuarios ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
         cin >> index;
     }
     return _listaUsuarios[index];
+}
+
+Entrada* Aplicacion::getEntradaMercadoSecundario(int index){
+    int aux = _listaUsuarios.size();
+    if(aux==0){
+        cout<<"No hay entradas disponibles"<<endl;
+        return nullptr;
+    }
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de usuarios ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
+    }
+    return _listaEntradasMercadoSecundario[index];
 }
 
 int Aplicacion::buscarUsuario(const string& nombreUsuario){
@@ -157,14 +205,13 @@ void Aplicacion::menuPrincipal(){
 
         case 1:
             this->iniciarSesion();
-            break;
+                    break;
 
-        default:
-            cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
-            this->menuPrincipal();
-            break;
-
-    }
+                default:
+                    cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+                    this->menuPrincipal();
+                    break;
+        }
 }
 
 void Aplicacion::iniciarSesion(){
