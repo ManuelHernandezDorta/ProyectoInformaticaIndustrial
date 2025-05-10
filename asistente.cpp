@@ -149,6 +149,18 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
             cout<<"Volviendo al menú"<<endl;
             return;
         }
+        if(_cartera<En2->getPrecioMercadoSecundario()){
+            cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
+            return;
+        }else{
+            _cartera=_cartera-En2->getPrecioMercadoSecundario();
+            cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< En2->getPrecioMercadoSecundario() <<endl;
+        }
+        int carteraVendedor=En2->getAsistente()->getCartera();                //Cartera vendedor
+        carteraVendedor=carteraVendedor+En2->getPrecioMercadoSecundario();    //Sumar dinero al vendedor
+        En2->getAsistente()->setCartera(carteraVendedor);                     //Actualizar cartera
+        En2->setAsistente(this);                                              //Se asigna la entrada al nuevo usuario
+        Apli->eliminarEntradaMercado(En2);                                    //Se elimina la entrada del mercado secundario
         break;
 }
 

@@ -14,6 +14,7 @@ public:
     ~Entrada();
     void displayEntrada();
     void displayEntradaMercadoSecundario();
+    void setAsistente(Asistente* asistente);
     Evento* getEvento();
     Asistente* getAsistente();
     int getPrecioMercadoSecundario();
