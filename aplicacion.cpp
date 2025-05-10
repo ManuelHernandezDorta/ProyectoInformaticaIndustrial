@@ -52,7 +52,7 @@ void Aplicacion::displayEntradasMercadoSecundario(){
     cout << "Número de Entradas totales: " << _listaEntradasMercadoSecundario.size() << endl;
     for (unsigned long i = 0; i< _listaEntradasMercadoSecundario.size(); i++){
         cout<<i<<"-";
-        _listaEntradasMercadoSecundario[i]->displayEntrada();
+        _listaEntradasMercadoSecundario[i]->displayEntradaMercadoSecundario();
     }
 }
 

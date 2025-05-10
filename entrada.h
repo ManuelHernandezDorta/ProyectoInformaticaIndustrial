@@ -13,6 +13,7 @@ public:
     Entrada(Asistente* asistenteAsignado, Evento* entradaEvento);
     ~Entrada();
     void displayEntrada();
+    void displayEntradaMercadoSecundario();
     Evento* getEvento();
     Asistente* getAsistente();
     int getPrecioMercadoSecundario();

@@ -36,3 +36,7 @@ void Entrada::setPrecioMercadoSecundario(const int precio){
 void Entrada::displayEntrada(){
     cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<endl;
 }
+
+void Entrada::displayEntradaMercadoSecundario(){
+    cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<" a un precio de: "<< _precioMercadoSecundario <<endl;
+}
