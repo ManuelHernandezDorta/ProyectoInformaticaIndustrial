@@ -29,6 +29,7 @@ public:
     void informaciónArtista(Aplicacion* Apli);
     void displayUsuario();
     void menu(Aplicacion* App);
+    void mercadoSecundario(Aplicacion* Apli);
     string tipoUsuario();
     Usuario* editar();
 

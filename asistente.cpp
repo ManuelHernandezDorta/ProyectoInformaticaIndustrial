@@ -68,7 +68,7 @@ void Asistente::menu(Aplicacion* App){
     string continuar = "S";
 
     while (continuar == "S" || continuar == "s") {
-    cout << "Menu: " << endl << "0. Modificar fondos de la cartera" << endl << "1. Ver entradas" <<endl<< "2. Comprar entradas "<<endl<< "3. Ver eventos disponibles"<<endl<< "4. Ver información artista"<<endl;
+    cout << "Menu: " << endl << "0. Modificar fondos de la cartera" << endl << "1. Ver entradas" <<endl<< "2. Comprar entradas al canal oficial "<<endl<< "3. Ver eventos disponibles"<<endl<< "4. Ver información artista"<<endl;
     cin >> eleccion;
 
     switch (eleccion){
@@ -109,17 +109,44 @@ void Asistente::menu(Aplicacion* App){
         return;
 }
 
+void Asistente::mercadoSecundario(Aplicacion* Apli){
+    int eleccionsecundario;
+    int index;
+    cout << "Selecciona el tipo de proceso que quieres realizar en el mercado secundario: " << endl << "0. Vender entrada en el mercado secundario  " << endl << "1. Comprar entrada en el mercado secundario " << endl;
+    cin >> eleccionsecundario;
+
+    switch (eleccionsecundario){
+
+    case 0: {
+        cout<<"A continuación se muestra la lista de entradas propia:"<<endl;
+        this->mostrarEntradas();
+        cout<<"Seleccione el índice de la entrada que quiere comprar"<<endl;
+        cin>>index;
+        Entrada* En=Apli->getEntradaMercadoSecundario(index);
+        if(En==nullptr){
+            cout<<"Volviendo al menú"<<endl;
+            break;
+        }
+
+        break;
+    }
+    case 1: {
+
+        break;
+}
+
+default: {
+        cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
+        break;
+}
+
+}
+}
+
 void Asistente::comprarEntrada(Aplicacion* Apli){
     int index;
 
     if (_vip){
-        int eleccion;
-        cout << "Selecciona que tipo de compra quieres realizar: " << endl << "0. Canal oficial de venta  " << endl << "1. Mercado de segunda mano " << endl;
-        cin >> eleccion;
-
-        switch (eleccion){
-
-        case 0: {
             cout<<"A continuación se muestra la lista de eventos:"<<endl;
             Apli->displayEventos();
             cout<<"Seleccione el índice del evento del que quiere comprar una entrada"<<endl;
@@ -143,43 +170,6 @@ void Asistente::comprarEntrada(Aplicacion* Apli){
             Apli->getEvento(index)->comprarEntrada();                      //-1 entrada
             Entrada* miEntrada=new Entrada(this, Apli->getEvento(index));
             _listaEntradas.push_back(miEntrada);
-                break;
-        }
-
-        case 1: {
-            int eleccion;
-            cout << "Selecciona el tipo de proceso que quieres realizar en el mercado secundario: " << endl << "0. Vender entrada en el mercado secundario  " << endl << "1. Comprar entrada en el mercado secundario " << endl;
-            cin >> eleccion;
-
-            switch (eleccion){
-
-            case 0: {
-                cout<<"A continuación se muestra la lista de entradas propia:"<<endl;
-                this->mostrarEntradas();
-                cout<<"Seleccione el índice de la entrada que quiere comprar"<<endl;
-                cin>>index;
-                Entrada* En=Apli->getEntradaMercadoSecundario(index);
-                if(En==nullptr){
-                    cout<<"Volviendo al menú"<<endl;
-                    return;
-                    break;
-                }
-
-                break;
-            }
-            case 1: {
-
-                break;
-            }
-            }
-                break;
-        }
-
-        default: {
-                cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
-                break;
-        }
-        }
 
     }else{
         cout<<"A continuación se muestra la lista de eventos:"<<endl;
