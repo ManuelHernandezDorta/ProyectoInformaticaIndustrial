@@ -32,6 +32,7 @@ public:
     void mercadoSecundario(Aplicacion* Apli);
     string tipoUsuario();
     Usuario* editar();
+    Entrada* getEntrada(int index);
 
 private:
     vector<Entrada*> _listaEntradas;

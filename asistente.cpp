@@ -68,7 +68,7 @@ void Asistente::menu(Aplicacion* App){
     string continuar = "S";
 
     while (continuar == "S" || continuar == "s") {
-    cout << "Menu: " << endl << "0. Modificar fondos de la cartera" << endl << "1. Ver entradas" <<endl<< "2. Comprar entradas al canal oficial "<<endl<< "3. Ver eventos disponibles"<<endl<< "4. Ver información artista"<<endl;
+    cout << "Menu: " << endl << "0. Modificar fondos de la cartera" << endl << "1. Ver entradas" <<endl<< "2. Comprar entradas al canal oficial "<<endl<< "3. Ver eventos disponibles"<<endl<< "4. Ver información artista"<<endl<< "5. Mercado secundario"<<endl;
     cin >> eleccion;
 
     switch (eleccion){
@@ -96,6 +96,10 @@ void Asistente::menu(Aplicacion* App){
         this->informaciónArtista(App);
         break;
     }
+    case 5: {
+        this->mercadoSecundario(App);
+        break;
+    }
     default: {
             cout << "Esa opccion no existe, selecciona una opccion posible" << endl;
             break;
@@ -110,8 +114,10 @@ void Asistente::menu(Aplicacion* App){
 }
 
 void Asistente::mercadoSecundario(Aplicacion* Apli){
+    if (_vip){
     int eleccionsecundario;
     int index;
+    int precio;
     cout << "Selecciona el tipo de proceso que quieres realizar en el mercado secundario: " << endl << "0. Vender entrada en el mercado secundario  " << endl << "1. Comprar entrada en el mercado secundario " << endl;
     cin >> eleccionsecundario;
 
@@ -120,18 +126,29 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
     case 0: {
         cout<<"A continuación se muestra la lista de entradas propia:"<<endl;
         this->mostrarEntradas();
-        cout<<"Seleccione el índice de la entrada que quiere comprar"<<endl;
+        cout<<"Seleccione el índice de la entrada que quiere vender"<<endl;
         cin>>index;
-        Entrada* En=Apli->getEntradaMercadoSecundario(index);
+        Entrada* En=this->getEntrada(index);
         if(En==nullptr){
             cout<<"Volviendo al menú"<<endl;
-            break;
+            return;
         }
-
+        cout<<"Seleccione el precio de reventa de la entrada:"<<endl;
+        cin>>precio;
+        En->setPrecioMercadoSecundario(precio);
+        Apli->anadirEntrada(En);
         break;
     }
     case 1: {
-
+        cout<<"A continuación se muestra la lista de entradas en reventa:"<<endl;
+        Apli->displayEntradasMercadoSecundario();
+        cout<<"Seleccione el índice de la entrada que quiere comprar"<<endl;
+        cin>>index;
+        Entrada* En2=Apli->getEntradaMercadoSecundario(index);
+        if(En2==nullptr){
+            cout<<"Volviendo al menú"<<endl;
+            return;
+        }
         break;
 }
 
@@ -140,7 +157,23 @@ default: {
         break;
 }
 
+   }
+   }else{
+        cout<<"El mercado secundario únicamente está disponible para asistentes VIP"<<endl;
+    }
 }
+
+Entrada* Asistente::getEntrada(int index){
+    int aux = _listaEntradas.size();
+    if(aux==0){
+        cout<<"No hay entradas disponibles"<<endl;
+        return nullptr;
+    }
+    while (index < 0 || index >= aux){
+        cout<< "El índice se encuentra fuera de rango, debe estar entre 0 y el numero de usuarios ((" << aux << ") para que sea válido. Introduce el indice de nuevo: " << endl;
+        cin >> index;
+    }
+    return _listaEntradas[index];
 }
 
 void Asistente::comprarEntrada(Aplicacion* Apli){

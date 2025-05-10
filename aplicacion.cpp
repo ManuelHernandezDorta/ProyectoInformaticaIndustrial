@@ -159,7 +159,7 @@ Usuario* Aplicacion::getUsuario(int index){
 }
 
 Entrada* Aplicacion::getEntradaMercadoSecundario(int index){
-    int aux = _listaUsuarios.size();
+    int aux = _listaEntradasMercadoSecundario.size();
     if(aux==0){
         cout<<"No hay entradas disponibles"<<endl;
         return nullptr;
