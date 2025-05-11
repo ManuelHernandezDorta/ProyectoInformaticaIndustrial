@@ -108,10 +108,9 @@ void Artista::eliminarEvento(Evento* E, Aplicacion* Apli) {
 
         if (_listaEventosArtista[i] == E) {
             cout << "Se procede a eliminar el evento: " << E->getNombre() << endl;
-            delete _listaEventosArtista[i];                                          //liberamos memoria dinámica
-            _listaEventosArtista.erase(_listaEventosArtista.begin() + i);            //eliminamos el evento del vector del artista
             Apli->eliminarEvento(E);                                                 //eliminamos el evento del vector de la aplicación
             E->getLocalizacion()->eliminarEvento(E);                                 //eliminamos el evento asignado a su localización
+            _listaEventosArtista.erase(_listaEventosArtista.begin() + i);            //eliminamos el evento del vector del artista
             cout << "Evento eliminado correctamente." << endl;
             return;
         }

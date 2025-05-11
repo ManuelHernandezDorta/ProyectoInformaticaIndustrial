@@ -42,6 +42,5 @@ void Entrada::displayEntrada(){
 }
 
 void Entrada::displayEntradaMercadoSecundario(){
-    cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<" a un precio de: "<< _precioMercadoSecundario << " vendedor: ";
-    _asistenteAsignado->displayUsuario();
+    cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<" a un precio de: "<< _precioMercadoSecundario << " vendedor: "<< _asistenteAsignado->getNombre()<<endl;
 }

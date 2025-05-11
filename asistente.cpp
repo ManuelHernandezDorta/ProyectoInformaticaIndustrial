@@ -198,7 +198,7 @@ void Asistente::eliminarEntrada(Entrada *entrada){
         if (_listaEntradas[i] == entrada) {
             _listaEntradas.erase(_listaEntradas.begin() + i);
             cout << "Entrada eliminada de la posesión del usuario: ";
-            entrada->getAsistente()->displayUsuario();
+            entrada->getAsistente()->getNombre();
             return;
             }
     }
