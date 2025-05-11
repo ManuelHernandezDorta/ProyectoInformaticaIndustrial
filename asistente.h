@@ -30,6 +30,8 @@ public:
     void displayUsuario();
     void menu(Aplicacion* App);
     void mercadoSecundario(Aplicacion* Apli);
+    void eliminarEntrada(Entrada* entrada);
+    void anadirEntrda(Entrada* entrada);
     string tipoUsuario();
     Usuario* editar();
     Entrada* getEntrada(int index);

@@ -119,6 +119,17 @@ void Aplicacion::eliminarEntradaMercado(Entrada *entrada){
     cout<<"La entrada no se encuentra en el mercado secundario"<<endl;
 }
 
+bool Aplicacion::contieneEntrada(Entrada *entrada){
+    for(unsigned i=0;i<_listaEntradasMercadoSecundario.size();i++){
+        if (_listaEntradasMercadoSecundario[i] == entrada) {
+            cout << " La entrada ya ha sido añadida al mercado secundario"<< endl;
+            return true;
+            }
+    }
+    cout<<"La entrada no se encuentra en el mercado secundario y se procederá a añadirla"<<endl;
+    return false;
+}
+
 Localizacion* Aplicacion::getLocalizacion(int index){
     int aux = _listaLocalizaciones.size();
     if(aux==0){
@@ -234,7 +245,7 @@ void Aplicacion::iniciarSesion(){
         cin >> contraseña;
 
         if (this->comprobarContraseña(nombre, contraseña)){
-            cout << "Contraseña correcta, te has registrado de forma correcta" << endl;
+            cout << "Contraseña correcta, se ha iniciado sesión de forma correcta" << endl;
             _listaUsuarios[indiceUsuario]->menu(this);
             contraseñaCorrecta = true;
         }

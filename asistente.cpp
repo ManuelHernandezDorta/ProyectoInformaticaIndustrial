@@ -59,6 +59,7 @@ void Asistente::displayUsuario(){
 void Asistente::mostrarEntradas(){
     cout << "Número de Entradas totales: " << _listaEntradas.size() << endl;
     for (unsigned long i = 0; i< _listaEntradas.size(); i++){
+            cout<<i<<"-";
             _listaEntradas[i]->displayEntrada();
         }
 }
@@ -133,6 +134,10 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
             cout<<"Volviendo al menú"<<endl;
             return;
         }
+        if(Apli->contieneEntrada(En)){
+            cout<<"Volviendo al menú"<<endl;                            //Se comprueba si la entrada ya ha sido añadida con anterioridad
+            return;
+        }
         cout<<"Seleccione el precio de reventa de la entrada:"<<endl;
         cin>>precio;
         En->setPrecioMercadoSecundario(precio);
@@ -149,17 +154,25 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
             cout<<"Volviendo al menú"<<endl;
             return;
         }
+        if(this==En2->getAsistente()){
+            cout<<"Esa entrada está en tu posesión, no puedes comprar una entrada que es tuya "<<endl;
+            cout<<"Volviendo al menú"<<endl;
+            return;
+        }
         if(_cartera<En2->getPrecioMercadoSecundario()){
             cout<<"No hay dinero suficiente en la cartera para poder comprar la entrada"<<endl;
             return;
         }else{
-            _cartera=_cartera-En2->getPrecioMercadoSecundario();
+            _cartera=_cartera-En2->getPrecioMercadoSecundario();               //Actualizar cartera comprador
             cout<<"Se le ha descontado de la cartera el precio de la entrada: "<< En2->getPrecioMercadoSecundario() <<endl;
         }
         int carteraVendedor=En2->getAsistente()->getCartera();                //Cartera vendedor
         carteraVendedor=carteraVendedor+En2->getPrecioMercadoSecundario();    //Sumar dinero al vendedor
         En2->getAsistente()->setCartera(carteraVendedor);                     //Actualizar cartera
+
+        En2->getAsistente()->eliminarEntrada(En2);                            //Se elimina la entrada del vector del vendedor y se muestra su nombre
         En2->setAsistente(this);                                              //Se asigna la entrada al nuevo usuario
+        this->anadirEntrda(En2);                                              //Se añade la entrada a la lista del comprador
         Apli->eliminarEntradaMercado(En2);                                    //Se elimina la entrada del mercado secundario
         break;
     }
@@ -178,6 +191,22 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
    }else{
         cout<<"El mercado secundario únicamente está disponible para asistentes VIP"<<endl;
     }
+}
+
+void Asistente::eliminarEntrada(Entrada *entrada){
+    for(unsigned i=0;i<_listaEntradas.size();i++){
+        if (_listaEntradas[i] == entrada) {
+            _listaEntradas.erase(_listaEntradas.begin() + i);
+            cout << "Entrada eliminada de la posesión del usuario: ";
+            entrada->getAsistente()->displayUsuario();
+            return;
+            }
+    }
+    cout<<"La entrada no se encuentra en el mercado secundario"<<endl;
+}
+
+void Asistente::anadirEntrda(Entrada *entrada){
+    _listaEntradas.push_back(entrada);
 }
 
 Entrada* Asistente::getEntrada(int index){

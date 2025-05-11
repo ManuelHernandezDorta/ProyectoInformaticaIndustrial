@@ -31,6 +31,7 @@ public:
     void eliminarEvento(Evento* E);
     void eliminarLocalizacion(Localizacion* Loc);
     void eliminarEntradaMercado(Entrada* entrada);
+    bool contieneEntrada(Entrada* entrada);
     Localizacion* getLocalizacion(int index);
     Evento* getEvento(int index);
     Usuario* getUsuario(int index);
