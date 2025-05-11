@@ -22,6 +22,9 @@ Aplicacion::~Aplicacion(){
     for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
         delete _listaUsuarios[i];
     }
+    for (unsigned long i = 0; i < _listaEntradasMercadoSecundario.size(); i++){
+        delete _listaEntradasMercadoSecundario[i];
+    }
 }
 
 void Aplicacion::displayUsuarios(){
