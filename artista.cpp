@@ -86,7 +86,7 @@ void Artista::crearEvento(Aplicacion* Apli){
 
     cout << "Introduce la fecha (año,mes,dia) con formato (AAAA/MM/DD): ";
     cin >> fecha;
-    Apli->getLocalizacion(index)->coincideFecha(fecha);
+    loc->coincideFecha(fecha);
 
 
     cout << "Introduce el precio del evento: ";
@@ -97,7 +97,7 @@ void Artista::crearEvento(Aplicacion* Apli){
 
     Evento* miEvento=new Evento(nombreEvento, fecha, precio, esVip, loc, this);
     _listaEventosArtista.push_back(miEvento);                    //Añadimos el evento a la lista de eventos del artista
-    Apli->getLocalizacion(index)->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
+    loc->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
     Apli->anadirEvento(miEvento);                              //Añadimos el evento a la lista de eventos de la aplicacion
 
     cout<<"Evento creado"<<endl;
