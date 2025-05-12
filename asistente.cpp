@@ -299,8 +299,7 @@ void Asistente::informaciónArtista(Aplicacion *Apli){
     int indiceUsuario = Apli->buscarUsuario(nombre);
     if (indiceUsuario < 0){
         cout << "No existe ningun usuario con ese nombre" << endl;
-    }
-    if(Apli->getUsuario(indiceUsuario)->tipoUsuario()=="artista"){
+    }else if(Apli->getUsuario(indiceUsuario)->tipoUsuario()=="artista"){
         Apli->getUsuario(indiceUsuario)->displayUsuario();
     }else{
         cout<<"El nombre introducido no pertenece a un artista "<<endl;
