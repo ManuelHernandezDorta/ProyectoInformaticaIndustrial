@@ -20,6 +20,7 @@ public:
     void crearAdministrador();
     void menu(Aplicacion* App);
     Usuario* editar();
+    string guardarUsuario();
 };
 
 #endif // ADMINISTRADOR_H

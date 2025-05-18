@@ -10,6 +10,8 @@ int main(){
     bool continuar = false;
 
     do{
+        App.cargarUsuarios();
+
         App.menuPrincipal();
 
         cout << "Desea volver a abrir el menu principal: (S/N) (Si no lo desea se cerrara el programa): " << endl;
@@ -20,6 +22,9 @@ int main(){
         }
 
         else{
+
+            App.guardarUsuarios();
+
             cout << "Cerrando el programa..." << endl;
             continuar =  false;
         }

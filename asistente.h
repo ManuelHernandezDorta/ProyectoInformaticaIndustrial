@@ -35,12 +35,13 @@ public:
     string tipoUsuario();
     Usuario* editar();
     Entrada* getEntrada(int index);
+    string guardarUsuario();
 
 private:
-    vector<Entrada*> _listaEntradas;
     string _dni;
     int _cartera;
     bool _vip;
+    vector<Entrada*> _listaEntradas;
 
 };
 

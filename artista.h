@@ -35,6 +35,7 @@ public:
     string tipoUsuario();
     Usuario* editar();
     Evento* getEventoArtista(int index);
+    string guardarUsuario();
 
 
 private:

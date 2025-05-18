@@ -103,3 +103,13 @@ Usuario* Administrador::editar(){
         }
     }
 }
+
+string Administrador::guardarUsuario(){
+
+    stringstream cadena;
+
+    cadena << "administrador," << _nombreUsuario << "," << _contraseña;
+
+    return cadena.str();
+
+}

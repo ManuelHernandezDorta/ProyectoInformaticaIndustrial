@@ -10,6 +10,7 @@
 #include "entrada.h"
 
 #include <vector>
+#include <fstream>
 
 class Localizacion;
 class Entrada;
@@ -51,7 +52,8 @@ public:
     bool fechaAsistenteUnMes(int fecha);
     void borrarUsuario();
     void editarUsuario();
-
+    void guardarUsuarios();
+    void cargarUsuarios();
 
 private:
     vector<Usuario*> _listaUsuarios;

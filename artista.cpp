@@ -320,3 +320,13 @@ Usuario* Artista::editar(){
     }
 }
 
+string Artista::guardarUsuario(){
+
+    stringstream cadena;
+
+    cadena << "artista," << _nombreUsuario << "," << _contraseña<< "," << _estiloMusical<< "," << _descripcion<< "," << _nombreArtista;
+
+    return cadena.str();
+
+}
+

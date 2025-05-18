@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <string>
 
 
 Aplicacion::Aplicacion(){
@@ -485,4 +486,67 @@ void Aplicacion::borrarUsuario(){
         cout << "Se ha borrado el usuario correctamente" << endl;
         _listaUsuarios.erase(_listaUsuarios.begin() + indiceUsuario);
     }
+}
+
+void Aplicacion::guardarUsuarios(){
+
+    ofstream archivo ("usuarios.txt", ios::out);
+
+    if (!archivo.is_open()){
+        cerr << "Se ha producido un error al abrir el archvio para guardar los usuarios" << endl;
+        cerr << "No se han podido guardar los datos" << endl;
+        return;
+    }
+
+    for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
+
+        archivo << _listaUsuarios[i]->guardarUsuario() << endl;
+
+    }
+
+    archivo.close();
+}
+
+void Aplicacion::cargarUsuarios(){
+
+    ifstream archivo ("usuarios.txt", ios::in);
+
+    if (!archivo.is_open()){
+        cerr << "No se ha econtrado ningun archvo para cargar usuarios" << endl;
+        return;
+    }
+
+    string linea;
+
+
+    while (getline(archivo, linea)){
+        stringstream info (linea);
+
+        string dato;
+        vector <string> datos;
+
+        while(getline(info, dato, ',')){
+            datos.push_back(dato);
+        }
+
+        if (datos[0] == "administrador"){
+            if (datos[1] == "root"){}
+            else{
+                Usuario* nuevoAdmin = new Administrador(datos[1], datos[2]);
+                _listaUsuarios.push_back(nuevoAdmin);
+            }
+        }
+
+        if (datos[0] == "asistente"){
+            Usuario* nuevoAsistente = new Asistente(datos[1], datos[2], datos[3], stoi(datos[4]), stoi(datos[5]));
+            _listaUsuarios.push_back(nuevoAsistente);
+        }
+
+        if (datos[0] == "artista"){
+            Usuario* nuevoArtista = new Artista(datos[1], datos[2], datos[3], datos[4], datos[5]);
+            _listaUsuarios.push_back(nuevoArtista);
+        }
+
+    }
+
 }

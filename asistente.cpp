@@ -385,3 +385,13 @@ Usuario* Asistente::editar(){
         }
     }
 }
+
+string Asistente::guardarUsuario(){
+
+    stringstream cadena;
+
+    cadena << "asistente," << _nombreUsuario << "," << _contraseña<< "," << _dni << "," << _cartera<< "," << _vip;
+
+    return cadena.str();
+
+}

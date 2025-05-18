@@ -2,6 +2,7 @@
 #define USUARIO_H
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
     virtual void menu(Aplicacion* App) = 0;
     virtual string tipoUsuario()=0;
     virtual Usuario* editar() = 0;
+    virtual string guardarUsuario() = 0;
 
 
 protected:
