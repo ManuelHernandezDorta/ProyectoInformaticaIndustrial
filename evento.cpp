@@ -24,6 +24,17 @@ Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Locali
 
 }
 
+Evento::Evento(string nombreEvento, int fecha, int precio, bool eventoVip, int entradas,Localizacion* Loc, Usuario* creador){
+    _nombreEvento=nombreEvento;
+    _fecha = fecha;
+    _precio=precio;
+    _eventoVip=eventoVip;
+    _entradas=entradas;
+    _Loc=Loc;
+    _creador=creador;
+
+}
+
 
 Evento::Evento(const Evento& E){
     _nombreEvento=E._nombreEvento;
@@ -98,4 +109,14 @@ int Evento::getPrecio(){
 
 void Evento::comprarEntrada(){
     _entradas=_entradas-1;
+}
+
+string Evento::guardarEvento(){
+
+    stringstream cadena;
+
+    cadena << _nombreEvento << "," << _fecha << "," << _precio << "," << _eventoVip << "," << _entradas << "," << _Loc->getNombre()<< "," << _creador->getNombre();
+
+    return cadena.str();
+
 }

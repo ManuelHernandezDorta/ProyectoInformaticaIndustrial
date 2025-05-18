@@ -13,6 +13,7 @@ class Evento
 public:
     Evento();
     Evento(string nombreEvento, int fecha, int precio, bool eventoVip,Localizacion* Loc, Usuario* creador);
+    Evento(string nombreEvento, int fecha, int precio, bool eventoVip, int entradas,Localizacion* Loc, Usuario* creador);
     Evento(const Evento& E);
     ~Evento();
     void displayEvento();
@@ -29,6 +30,7 @@ public:
     int getPrecio();
     bool comprobarVip();
     void comprarEntrada();
+    string guardarEvento();
 
 private:
     string _nombreEvento;

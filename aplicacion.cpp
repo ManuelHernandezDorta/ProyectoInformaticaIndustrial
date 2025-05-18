@@ -195,6 +195,15 @@ int Aplicacion::buscarUsuario(const string& nombreUsuario){
     return (-1);
 }
 
+int Aplicacion::buscarLocalizacion(const string& nombreLocalizacion){
+    for (unsigned long i = 0; i < _listaLocalizaciones.size(); i++){
+        if (_listaLocalizaciones[i]->getNombre() == nombreLocalizacion){
+            return i;
+        }
+    }
+    return (-1);
+}
+
 bool Aplicacion::comprobarContraseña(const string& nombreUsuario, const string& contraseña){
     int indiceUsuario = buscarUsuario(nombreUsuario);
 
@@ -490,7 +499,7 @@ void Aplicacion::borrarUsuario(){
 
 void Aplicacion::guardarUsuarios(){
 
-    ofstream archivo ("usuarios.txt", ios::out);
+    ofstream archivo ("usuarios.txt", ios::out|ios::trunc);
 
     if (!archivo.is_open()){
         cerr << "Se ha producido un error al abrir el archvio para guardar los usuarios" << endl;
@@ -555,7 +564,7 @@ void Aplicacion::cargarUsuarios(){
 
 void Aplicacion::guardarLocalizaciones(){
 
-    ofstream archivo ("localizaciones.txt", ios::out);
+    ofstream archivo ("localizaciones.txt", ios::out|ios::trunc);
 
     if (!archivo.is_open()){
         cerr << "Se ha producido un error al abrir el archvio para guardar las localizaciones" << endl;
@@ -596,6 +605,61 @@ void Aplicacion::cargarLocalizaciones(){
 
         Localizacion* nuevaLocalizacion = new Localizacion(datos[0], datos[1], stoi(datos[2]));
         _listaLocalizaciones.push_back(nuevaLocalizacion);
+
+    }
+
+    archivo.close();
+
+}
+
+void Aplicacion::guardarEventos(){
+
+    ofstream archivo ("eventos.txt", ios::out|ios::trunc);
+
+    if (!archivo.is_open()){
+        cerr << "Se ha producido un error al abrir el archvio para guardar los eventos" << endl;
+        cerr << "No se han podido guardar los datos" << endl;
+        return;
+    }
+
+    for (unsigned long i = 0; i < _listaEventos.size(); i++){
+
+        archivo << _listaEventos[i]->guardarEvento() << endl;
+
+    }
+
+    archivo.close();
+
+}
+
+void Aplicacion::cargarEventos(){
+
+    ifstream archivo ("eventos.txt", ios::in);
+
+    if (!archivo.is_open()){
+        cerr << "No se ha econtrado ningun archvo para cargar eventos" << endl;
+        return;
+    }
+
+    string linea;
+
+
+    while (getline(archivo, linea)){
+        stringstream info (linea);
+
+        string dato;
+        vector <string> datos;
+
+        while(getline(info, dato, ',')){
+            datos.push_back(dato);
+        }
+
+        Evento* nuevoEvento = new Evento(datos[0], stoi(datos[1]), stoi(datos[2]), stoi(datos[3]), stoi(datos[4]), _listaLocalizaciones[buscarLocalizacion(datos[5])], _listaUsuarios[buscarUsuario(datos[6])]);
+        _listaLocalizaciones[buscarLocalizacion(datos[5])]->agregarEvento(nuevoEvento);
+
+        _listaUsuarios[buscarUsuario(datos[6])]->añadirEvento(nuevoEvento);
+
+        _listaEventos.push_back(nuevoEvento);
 
     }
 

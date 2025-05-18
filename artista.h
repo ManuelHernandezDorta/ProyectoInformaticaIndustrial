@@ -28,6 +28,7 @@ public:
     void displayUsuario();
     friend ostream& operator<<(ostream& os, Artista& artista);
     void displayListaEventos();
+    void añadirEvento(Evento* E);
     void eliminarEvento(Evento* E, Aplicacion* Apli);
     void crearEvento(Aplicacion* Apli);
     void editarEvento(Evento* E,Aplicacion* Apli);

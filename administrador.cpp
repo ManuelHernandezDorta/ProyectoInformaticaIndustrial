@@ -27,7 +27,7 @@ void Administrador::menu(Aplicacion* App){
 
     while (continuar == "S" || continuar == "s") {
 
-        cout << "Menu: " << endl << "0. Mostrar lista de usuarios" << endl << "1. Crear Usuario" << endl << "2. Editar Usuario" << endl << "3. Borrar Usuario" << endl << "4. Crear una localizacion" << endl << "5. Mostrar lista de localizaaciones" << endl;
+    cout << "Menu: " << endl << "0. Mostrar lista de usuarios" << endl << "1. Crear Usuario" << endl << "2. Editar Usuario" << endl << "3. Borrar Usuario" << endl << "4. Crear una localizacion" << endl << "5. Mostrar lista de localizaaciones" << endl << "6. Mostrar lista de eventos" << endl;
     cin >> eleccion;
 
 
@@ -55,6 +55,10 @@ void Administrador::menu(Aplicacion* App){
 
         case(5):
             App->displayLocalizaciones();
+            break;
+
+        case(6):
+            App->displayEventos();
             break;
 
         default:

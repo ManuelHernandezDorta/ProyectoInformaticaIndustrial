@@ -7,6 +7,7 @@
 using namespace std;
 
 class Aplicacion;
+class Evento;
 
 class Usuario{
 
@@ -27,6 +28,7 @@ public:
     virtual string tipoUsuario()=0;
     virtual Usuario* editar() = 0;
     virtual string guardarUsuario() = 0;
+    virtual void añadirEvento(Evento* E){typeid(E).name();} //la funcion es solamente para que no salten warnings
 
 
 protected:

@@ -50,7 +50,7 @@ string Artista::getNombreArtista(){
 }
 
 void Artista::displayUsuario(){
-    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << "lista de eventos: " << endl;
+    cout << "Tipo: Artista, nombreUsuario: " << _nombreUsuario << ", contraseña: " << _contraseña << ", nombre de artista: " << _nombreArtista << ", estilo musical: " << _estiloMusical << ",  descripccion: " << _descripcion << " lista de eventos: " << endl;
     this->displayListaEventos();
 }
 
@@ -60,6 +60,10 @@ void Artista::displayListaEventos(){
         cout<<i<<"-";
         _listaEventosArtista[i]->displayEvento();
     }
+}
+
+void Artista::añadirEvento(Evento* E){
+    _listaEventosArtista.push_back(E);
 }
 
 ostream& operator<<(ostream& os, Artista& artista){
@@ -73,7 +77,7 @@ void Artista::crearEvento(Aplicacion* Apli){
     bool Vip;
 
     Apli->displayLocalizaciones();
-    cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " <<endl;
+    cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " << endl;
     cin>>index;
     Localizacion* loc=Apli->getLocalizacion(index);
     if(loc==nullptr){
@@ -331,7 +335,7 @@ string Artista::guardarUsuario(){
 
     stringstream cadena;
 
-    cadena << "artista," << _nombreUsuario << "," << _contraseña<< "," << _estiloMusical<< "," << _descripcion<< "," << _nombreArtista;
+    cadena << "artista," << _nombreUsuario << "," << _contraseña<< "," << _nombreArtista<< "," << _estiloMusical<< "," << _descripcion;
 
     return cadena.str();
 

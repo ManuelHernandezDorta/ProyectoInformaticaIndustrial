@@ -49,6 +49,10 @@ int Localizacion::getAforo(){
     return _aforo;
 }
 
+string Localizacion::getNombre(){
+    return _nombreLocalizacion;
+}
+
 void Localizacion::agregarEvento(Evento* E){
     _listaEventos.push_back(E);
 }

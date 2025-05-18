@@ -9,9 +9,11 @@ int main(){
     string desicion;
     bool continuar = false;
 
+    App.cargarUsuarios();
+    App.cargarLocalizaciones();
+    App.cargarEventos();
+
     do{
-        App.cargarUsuarios();
-        App.cargarLocalizaciones();
 
         App.menuPrincipal();
 
@@ -26,6 +28,7 @@ int main(){
 
             App.guardarUsuarios();
             App.guardarLocalizaciones();
+            App.guardarEventos();
 
             cout << "Cerrando el programa..." << endl;
             continuar =  false;

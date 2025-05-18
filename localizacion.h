@@ -19,6 +19,7 @@ public:
     void displayLocalizacion();
     bool localizacionDisponible(int dia, int mes, int ano);
     int getAforo();
+    string getNombre();
     vector<Evento*> getListaEventos();
     void agregarEvento(Evento* E);
     void eliminarEvento(Evento* E);
