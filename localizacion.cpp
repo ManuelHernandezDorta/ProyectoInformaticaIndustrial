@@ -37,7 +37,7 @@ Localizacion::~Localizacion(){}
 
 void Localizacion::displayLocalizacion(){
 
-    cout<<"El nombre de la localizacion es "<< _nombreLocalizacion << " con dirección " << _direccion << "y un aforo máximo de: " << _aforo << "personas " << endl;
+    cout<<"El nombre de la localizacion es "<< _nombreLocalizacion << " con dirección " << _direccion << " y un aforo máximo de: " << _aforo << " personas " << endl;
 
 }
 
@@ -78,5 +78,14 @@ void Localizacion::coincideFecha(int& fecha){
             }
      }
     }while(fechaOcupada);
+
+}
+string Localizacion::guardarLocalizacion(){
+
+    stringstream cadena;
+
+    cadena << _nombreLocalizacion << "," << _direccion << "," << _aforo;
+
+    return cadena.str();
 
 }

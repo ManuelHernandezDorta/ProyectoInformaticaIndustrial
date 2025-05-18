@@ -549,4 +549,56 @@ void Aplicacion::cargarUsuarios(){
 
     }
 
+    archivo.close();
+
+}
+
+void Aplicacion::guardarLocalizaciones(){
+
+    ofstream archivo ("localizaciones.txt", ios::out);
+
+    if (!archivo.is_open()){
+        cerr << "Se ha producido un error al abrir el archvio para guardar las localizaciones" << endl;
+        cerr << "No se han podido guardar los datos" << endl;
+        return;
+    }
+
+    for (unsigned long i = 0; i < _listaLocalizaciones.size(); i++){
+
+        archivo << _listaLocalizaciones[i]->guardarLocalizacion() << endl;
+
+    }
+
+    archivo.close();
+}
+
+void Aplicacion::cargarLocalizaciones(){
+
+    ifstream archivo ("localizaciones.txt", ios::in);
+
+    if (!archivo.is_open()){
+        cerr << "No se ha econtrado ningun archvo para cargar localizaciones" << endl;
+        return;
+    }
+
+    string linea;
+
+
+    while (getline(archivo, linea)){
+        stringstream info (linea);
+
+        string dato;
+        vector <string> datos;
+
+        while(getline(info, dato, ',')){
+            datos.push_back(dato);
+        }
+
+        Localizacion* nuevaLocalizacion = new Localizacion(datos[0], datos[1], stoi(datos[2]));
+        _listaLocalizaciones.push_back(nuevaLocalizacion);
+
+    }
+
+    archivo.close();
+
 }

@@ -54,6 +54,8 @@ public:
     void editarUsuario();
     void guardarUsuarios();
     void cargarUsuarios();
+    void guardarLocalizaciones();
+    void cargarLocalizaciones();
 
 private:
     vector<Usuario*> _listaUsuarios;

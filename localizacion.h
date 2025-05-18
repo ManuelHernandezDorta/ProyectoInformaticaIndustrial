@@ -23,6 +23,7 @@ public:
     void agregarEvento(Evento* E);
     void eliminarEvento(Evento* E);
     void coincideFecha(int& fecha);
+    string guardarLocalizacion();
 
 private:
     string _nombreLocalizacion;

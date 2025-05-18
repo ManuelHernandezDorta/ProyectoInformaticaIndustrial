@@ -11,6 +11,7 @@ int main(){
 
     do{
         App.cargarUsuarios();
+        App.cargarLocalizaciones();
 
         App.menuPrincipal();
 
@@ -24,6 +25,7 @@ int main(){
         else{
 
             App.guardarUsuarios();
+            App.guardarLocalizaciones();
 
             cout << "Cerrando el programa..." << endl;
             continuar =  false;

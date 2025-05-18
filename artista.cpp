@@ -68,9 +68,9 @@ ostream& operator<<(ostream& os, Artista& artista){
 }
 
 void Artista::crearEvento(Aplicacion* Apli){
-    string nombreEvento;
+    string nombreEvento, desicion;
     int precio, index, fecha;
-    bool esVip;
+    bool Vip;
 
     Apli->displayLocalizaciones();
     cout<< "Introduce el índice de la Localizacion en la que deseas celebrar el evento: " <<endl;
@@ -92,10 +92,17 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "Introduce el precio del evento: ";
     cin >> precio;
 
-    cout << "¿Es un evento VIP? (1 = Sí, 0 = No): ";
-    cin >> esVip;
+    cout << "¿Es un evento VIP? (S/N): ";
+    cin >> desicion;
 
-    Evento* miEvento=new Evento(nombreEvento, fecha, precio, esVip, loc, this);
+    if (desicion == "S" || desicion == "s"){
+        Vip =  true;
+    }
+    else{
+        Vip = false;
+    }
+
+    Evento* miEvento=new Evento(nombreEvento, fecha, precio, Vip, loc, this);
     _listaEventosArtista.push_back(miEvento);                    //Añadimos el evento a la lista de eventos del artista
     loc->agregarEvento(miEvento);      //Agregamos el evento a la lista de eventos de la localización
     Apli->anadirEvento(miEvento);                              //Añadimos el evento a la lista de eventos de la aplicacion
