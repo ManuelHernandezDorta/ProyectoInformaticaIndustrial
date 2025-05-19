@@ -23,9 +23,6 @@ Aplicacion::~Aplicacion(){
     for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
         delete _listaUsuarios[i];
     }
-    for (unsigned long i = 0; i < _listaEntradasMercadoSecundario.size(); i++){
-        delete _listaEntradasMercadoSecundario[i];
-    }
 }
 
 void Aplicacion::displayUsuarios(){
@@ -696,7 +693,18 @@ void Aplicacion::guardarEntradas(){
 
             for (unsigned long j = 0; j < listaEntradas.size(); j++){
 
-                archivo << listaEntradas[j]->guardarEntrada() << endl;
+                archivo << listaEntradas[j]->guardarEntrada();
+
+                for (unsigned long k = 0; k < _listaEntradasMercadoSecundario.size(); k++){
+
+                    if (listaEntradas[j] == _listaEntradasMercadoSecundario[k]){
+                        archivo << "," << "1" << endl;
+                    }
+                    else{
+                        archivo << "," << "0" << endl;
+                    }
+
+                }
 
             }
         }
@@ -731,6 +739,10 @@ void Aplicacion::cargarEntradas(){
         Entrada* nuevaEntrada = new Entrada(_listaUsuarios[buscarUsuario(datos[0])], _listaEventos[buscarEvento(datos[1])], stoi(datos[2]));
 
         _listaUsuarios[buscarUsuario(datos[0])]->añadirEntrada(nuevaEntrada);
+
+        if (stoi(datos[3]) == 1){
+            _listaEntradasMercadoSecundario.push_back(nuevaEntrada);
+        }
 
     }
 
