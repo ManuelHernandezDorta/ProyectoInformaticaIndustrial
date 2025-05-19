@@ -10,18 +10,20 @@ class Entrada
 {
 public:
     Entrada();
-    Entrada(Asistente* asistenteAsignado, Evento* entradaEvento);
+    Entrada(Usuario* asistenteAsignado, Evento* entradaEvento);
+    Entrada(Usuario* asistenteAsignado, Evento* entradaEvento, int precioSecundario);
     ~Entrada();
     void displayEntrada();
     void displayEntradaMercadoSecundario();
     void setAsistente(Asistente* asistente);
     Evento* getEvento();
-    Asistente* getAsistente();
+    Usuario* getAsistente();
     int getPrecioMercadoSecundario();
     void setPrecioMercadoSecundario(const int precio);
+    string guardarEntrada();
 
 private:
-    Asistente* _asistenteAsignado;
+    Usuario* _asistenteAsignado;
     Evento* _entradaEvento;
     int _precioMercadoSecundario;
 };

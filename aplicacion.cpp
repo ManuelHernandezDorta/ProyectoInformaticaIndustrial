@@ -204,6 +204,15 @@ int Aplicacion::buscarLocalizacion(const string& nombreLocalizacion){
     return (-1);
 }
 
+int Aplicacion::buscarEvento(const string& nombreEvento){
+    for (unsigned long i = 0; i < _listaEventos.size(); i++){
+        if (_listaEventos[i]->getNombre() == nombreEvento){
+            return i;
+        }
+    }
+    return (-1);
+}
+
 bool Aplicacion::comprobarContraseña(const string& nombreUsuario, const string& contraseña){
     int indiceUsuario = buscarUsuario(nombreUsuario);
 
@@ -660,6 +669,68 @@ void Aplicacion::cargarEventos(){
         _listaUsuarios[buscarUsuario(datos[6])]->añadirEvento(nuevoEvento);
 
         _listaEventos.push_back(nuevoEvento);
+
+    }
+
+    archivo.close();
+
+}
+
+void Aplicacion::guardarEntradas(){
+
+    ofstream archivo ("entradas.txt", ios::out|ios::trunc);
+
+    if (!archivo.is_open()){
+        cerr << "Se ha producido un error al abrir el archvio para guardar las entradas" << endl;
+        cerr << "No se han podido guardar los datos" << endl;
+        return;
+    }
+
+    for (unsigned long i = 0; i < _listaUsuarios.size(); i++){
+
+        vector<Entrada*> listaEntradas = _listaUsuarios[i]->getListaEntradas();
+
+        if (listaEntradas.empty()){}
+
+        else{
+
+            for (unsigned long j = 0; j < listaEntradas.size(); j++){
+
+                archivo << listaEntradas[j]->guardarEntrada() << endl;
+
+            }
+        }
+    }
+
+    archivo.close();
+
+}
+
+void Aplicacion::cargarEntradas(){
+
+    ifstream archivo ("entradas.txt", ios::in);
+
+    if (!archivo.is_open()){
+        cerr << "No se ha econtrado ningun archvo para cargar entradas" << endl;
+        return;
+    }
+
+    string linea;
+
+
+    while (getline(archivo, linea)){
+        stringstream info (linea);
+
+        string dato;
+        vector <string> datos;
+
+        while(getline(info, dato, ',')){
+            datos.push_back(dato);
+        }
+
+        Entrada* nuevaEntrada = new Entrada(_listaUsuarios[buscarUsuario(datos[0])], _listaEventos[buscarEvento(datos[1])], stoi(datos[2]));
+
+        _listaUsuarios[buscarUsuario(datos[0])]->añadirEntrada(nuevaEntrada);
 
     }
 

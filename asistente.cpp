@@ -172,7 +172,7 @@ void Asistente::mercadoSecundario(Aplicacion* Apli){
 
         En2->getAsistente()->eliminarEntrada(En2);                            //Se elimina la entrada del vector del vendedor y se muestra su nombre
         En2->setAsistente(this);                                              //Se asigna la entrada al nuevo usuario
-        this->anadirEntrda(En2);                                              //Se añade la entrada a la lista del comprador
+        this->añadirEntrada(En2);                                              //Se añade la entrada a la lista del comprador
         Apli->eliminarEntradaMercado(En2);                                    //Se elimina la entrada del mercado secundario
         break;
     }
@@ -205,7 +205,7 @@ void Asistente::eliminarEntrada(Entrada *entrada){
     cout<<"La entrada no se encuentra en el mercado secundario"<<endl;
 }
 
-void Asistente::anadirEntrda(Entrada *entrada){
+void Asistente::añadirEntrada(Entrada* entrada){
     _listaEntradas.push_back(entrada);
 }
 
@@ -394,4 +394,8 @@ string Asistente::guardarUsuario(){
 
     return cadena.str();
 
+}
+
+vector<Entrada*> Asistente::getListaEntradas(){
+    return _listaEntradas;
 }

@@ -6,22 +6,26 @@ Entrada::Entrada(){
     _precioMercadoSecundario=0;
 }
 
-Entrada::Entrada(Asistente* asistenteAsignado, Evento* entradaEvento){
+Entrada::Entrada(Usuario* asistenteAsignado, Evento* entradaEvento){
     _asistenteAsignado=asistenteAsignado;
     _entradaEvento=entradaEvento;
     _precioMercadoSecundario=0;
 }
 
-Entrada::~Entrada(){
-    delete _entradaEvento;
-    delete _asistenteAsignado;
+Entrada::Entrada(Usuario* asistenteAsignado, Evento* entradaEvento, int precioSecundario){
+    _asistenteAsignado = asistenteAsignado;
+    _entradaEvento = entradaEvento;
+    _precioMercadoSecundario = precioSecundario;
 }
+
+
+Entrada::~Entrada(){}
 
 Evento* Entrada::getEvento(){
     return _entradaEvento;
 }
 
-Asistente* Entrada::getAsistente(){
+Usuario* Entrada::getAsistente(){
     return _asistenteAsignado;
 }
 
@@ -43,4 +47,14 @@ void Entrada::displayEntrada(){
 
 void Entrada::displayEntradaMercadoSecundario(){
     cout<<"Entrada registrada al evento: "<< _entradaEvento->getNombre() <<" a un precio de: "<< _precioMercadoSecundario << " vendedor: "<< _asistenteAsignado->getNombre()<<endl;
+}
+
+string Entrada::guardarEntrada(){
+
+    stringstream cadena;
+
+    cadena << _asistenteAsignado->getNombre() << "," << _entradaEvento->getNombre()<< "," << _precioMercadoSecundario;
+
+    return cadena.str();
+
 }

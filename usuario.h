@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
 class Aplicacion;
 class Evento;
+class Entrada;
 
 class Usuario{
 
@@ -28,8 +30,12 @@ public:
     virtual string tipoUsuario()=0;
     virtual Usuario* editar() = 0;
     virtual string guardarUsuario() = 0;
-    virtual void añadirEvento(Evento* E){typeid(E).name();} //la funcion es solamente para que no salten warnings
-
+    virtual void añadirEvento(Evento* E){(void) E;} //la funcion es solamente para que no salten warnings
+    virtual vector<Entrada*> getListaEntradas(){return vector<Entrada*> ();} //la funcion es solamente para que no salten warnings
+    virtual void añadirEntrada (Entrada* entrada){(void) entrada;} //la funcion es solamente para que no salten warnings
+    virtual int getCartera(){return 0;}
+    virtual void setCartera(const int& cartera){(void) cartera;}
+    virtual void eliminarEntrada(Entrada* Entrada){(void) Entrada;}
 
 protected:
     string _nombreUsuario;

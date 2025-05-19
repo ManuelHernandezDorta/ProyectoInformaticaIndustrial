@@ -31,11 +31,12 @@ public:
     void menu(Aplicacion* App);
     void mercadoSecundario(Aplicacion* Apli);
     void eliminarEntrada(Entrada* entrada);
-    void anadirEntrda(Entrada* entrada);
+    void añadirEntrada(Entrada* entrada);
     string tipoUsuario();
     Usuario* editar();
     Entrada* getEntrada(int index);
     string guardarUsuario();
+    vector<Entrada*> getListaEntradas();
 
 private:
     string _dni;

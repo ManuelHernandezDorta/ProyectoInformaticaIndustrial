@@ -39,6 +39,7 @@ public:
     Entrada* getEntradaMercadoSecundario(int index);
     int buscarUsuario(const string& nombreUsuario);
     int buscarLocalizacion(const string& nombreLocalizacion);
+    int buscarEvento (const string& nombreEvento);
     bool comprobarContraseña(const string& nombreUsuario, const string& contraseña);
     void menuPrincipal();
     void iniciarSesion();
@@ -59,6 +60,8 @@ public:
     void cargarLocalizaciones();
     void guardarEventos();
     void cargarEventos();
+    void guardarEntradas();
+    void cargarEntradas();
 
 private:
     vector<Usuario*> _listaUsuarios;

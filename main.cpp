@@ -12,6 +12,7 @@ int main(){
     App.cargarUsuarios();
     App.cargarLocalizaciones();
     App.cargarEventos();
+    App.cargarEntradas();
 
     do{
 
@@ -26,9 +27,11 @@ int main(){
 
         else{
 
+            App.guardarEntradas();
             App.guardarUsuarios();
-            App.guardarLocalizaciones();
             App.guardarEventos();
+            App.guardarLocalizaciones();
+
 
             cout << "Cerrando el programa..." << endl;
             continuar =  false;
