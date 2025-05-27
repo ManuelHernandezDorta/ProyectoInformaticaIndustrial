@@ -17,7 +17,6 @@ public:
     Localizacion(const Localizacion& Loc);
     ~Localizacion();
     void displayLocalizacion();
-    bool localizacionDisponible(int dia, int mes, int ano);
     int getAforo();
     string getNombre();
     vector<Evento*> getListaEventos();

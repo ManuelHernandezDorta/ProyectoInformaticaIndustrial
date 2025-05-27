@@ -91,7 +91,10 @@ void Artista::crearEvento(Aplicacion* Apli){
     cout << "Introduce la fecha (año,mes,dia) con formato (AAAA/MM/DD): ";
     cin >> fecha;
     loc->coincideFecha(fecha);
-
+    if (fecha<Apli->getfechaActual()){
+        cout<<"La fecha introducida no es válida"<<endl;
+        return;
+    }
 
     cout << "Introduce el precio del evento: ";
     cin >> precio;
