@@ -692,20 +692,21 @@ void Aplicacion::guardarEntradas(){
         else{
 
             for (unsigned long j = 0; j < listaEntradas.size(); j++){
+                int mercadoSecundario=0;
 
                 archivo << listaEntradas[j]->guardarEntrada();
 
                 for (unsigned long k = 0; k < _listaEntradasMercadoSecundario.size(); k++){
 
                     if (listaEntradas[j] == _listaEntradasMercadoSecundario[k]){
-                        archivo << "," << "1" << endl;
+                        mercadoSecundario=1;
                     }
                     else{
-                        archivo << "," << "0" << endl;
+                        mercadoSecundario=0;
                     }
 
                 }
-
+                 archivo << "," << mercadoSecundario << endl;
             }
         }
     }
